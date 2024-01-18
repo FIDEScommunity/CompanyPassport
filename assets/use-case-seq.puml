@@ -1,0 +1,30 @@
+@startuml
+scale max 450 height
+
+actor Actor as "Entrepreneur[]"
+participant Notary as "Notary"
+participant KvK as "Chamber of Commerce"
+participant TaxAuthority as "Tax Authority"
+participant Bank as "Bank"
+participant LegalAdvisor as "Legal Advisor/Accountant"
+
+== Deed of Incorporation ==
+Notary -> Actor: Verify identities and legality
+Actor <-> Notary: Execution of the deed of incorporation
+note right
+    2x issuance? Multi-sig?
+end note
+== Registration at KvK ==
+KvK -> Actor: Verify incorporation documents
+KvK -> Actor: Issue company registration number
+
+== Tax Registration ==
+TaxAuthority -> Actor: Register for tax identification
+TaxAuthority -> Actor: Issue tax ID, VAT, ...
+
+== Opening a Bank Account ==
+Actor -> Bank: Request to open a business account
+Bank -> Actor: Verify KYC and AML creds
+Bank -> Actor: Issue bank account number
+
+@enduml

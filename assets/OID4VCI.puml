@@ -1,0 +1,162 @@
+@startuml
+'https://plantuml.com/component-diagram
+'allow_mixing
+
+skinparam legendBackgroundColor #white
+skinparam legendForegroundColor #black
+
+
+title High level functional components per role
+caption These are high level functional components for the issuer, holder/wallet and relying party roles.\nGiven these are roles a single system could fulfill multiple roles
+legend top left
+Legend
+|<back:lightblue><color:lightblue>##</back>| ARF required OID4VC components are listed in <back:white><color:lightblue>blue</back> |
+|<back:pink><color:pink>##</back>| Authentication, authorization components are listed in <back:white><color:pink>pink</back> |
+|<back:lightgreen><color:lightgreen>##</back>| Trust management and revocation components are listed in <back:white><color:lightgreen>green</back> |
+end legend
+
+package "(Q)EAA Provider - Issuer" {
+  [(Q)EAA Provider] as [(Q)EAA Provider Issuer] #lightblue
+  [KMS & DID mgmt] as [KMS & DID mgmt Issuer] #pink
+  [Trust mgmt] as [Trust mgmt Issuer] #lightgreen
+  [Auth] as [Auth Issuer] #pink
+  [Web app /\nResource Server] as [Web app Issuer]
+  [Auth Issuer] -d- "Auth API"
+  [(Q)EAA Provider Issuer] - "Issuance API"
+  [(Q)EAA Provider Issuer] --> [Trust mgmt Issuer]
+  [(Q)EAA Provider Issuer] --> [Auth Issuer]
+  [(Q)EAA Provider Issuer] --> [KMS & DID mgmt Issuer]
+
+
+  database "Issuer DB"
+
+
+node "Issuance API interfaces" {
+    [OID4VCI] as [OID4VCI Issuer] #lightblue
+
+    interface OID4VCICredential #lightblue [
+            Credential
+        ]
+    interface OID4VCIMGMTAPI #lightblue [
+        Management API
+    ]
+    interface OID4VCIToken #pink [
+            Token
+            (Sphereon opt)
+        ]
+    [OID4VCI Issuer] -l[#lightblue] OID4VCIMGMTAPI
+    [OID4VCI Issuer] -d[#lightblue] OID4VCICredential
+    [OID4VCI Issuer] -d[#lightblue] OID4VCIToken
+    [(Q)EAA Provider Issuer] -d[#lightblue]-> OID4VCIMGMTAPI
+    [Web app Issuer] -[#lightblue]-> OID4VCIMGMTAPI
+}
+
+node "Auth API interfaces" {
+    [OIDC IDP] as [OIDC IDP Issuer] #pink
+    [SIOPv2] as [SIOPv2 Issuer] #pink
+    interface AuthorizationOIDCIssuer [
+        Authorization
+    ]
+    interface AuthorizationSIOPv2Issuer [
+        Authorization
+    ]
+    [OIDC IDP Issuer] -u[#pink]- PAR
+    [OIDC IDP Issuer] -r[#pink]- AuthorizationOIDCIssuer
+    [OIDC IDP Issuer] -d[#pink]- Token
+    [SIOPv2 Issuer] -r[#pink]- AuthorizationSIOPv2Issuer
+
+}
+
+
+}
+
+
+
+
+package "Wallet/Holder" {
+  [(Q)EAA mgmt] as [(Q)EAA mgmt Holder]
+  [KMS & DID mgmt] as [KMS & DID mgmt Holder]
+  [Trust mgmt] as [Trust mgmt Holder]
+  [(Q)EAA mgmt Holder] - "Q(E)AA api"
+  [(Q)EAA mgmt Holder] --> [Trust mgmt Holder]
+  [(Q)EAA mgmt Holder] --> [KMS & DID mgmt Holder]
+  [(Q)EAA mgmt Holder] "OID4VCI" .l[#lightblue].> "Issuance API"
+  database "Wallet DB"
+
+  node "Wallet transport" {
+   [OID4VP Client] #lightblue
+   [OID4VCI Client] #lightblue
+   [OID4VCI Client] -[#lightblue]> OID4VCICredential
+   [OID4VCI Client] -[#pink]> PAR
+   [OID4VCI Client] -[#pink]> OID4VCIToken
+   [OID4VCI Client] -[#pink]> Token
+   [OID4VCI Client] -[#pink]> AuthorizationSIOPv2Issuer
+   [OID4VCI Client] -[#pink]> AuthorizationOIDCIssuer
+
+   [(Q)EAA mgmt Holder] -[#lightblue]> [OID4VCI Client]
+   [(Q)EAA mgmt Holder] -[#lightblue]> [OID4VP Client]
+  }
+}
+
+
+
+package "Relying Party" {
+  [(Q)EAA mgmt] as [(Q)EAA mgmt RP]
+  [KMS & DID mgmt] as [KMS & DID mgmt RP]
+  [Trust mgmt] as [Trust mgmt RP]
+  [Auth] as [Auth RP] #pink
+  [Web app /\nResource Server] as [Web app RP]
+  interface AuthAPIRP #pink [
+      Auth API
+    ]
+  [(Q)EAA mgmt RP] --> [Trust mgmt RP]
+  [(Q)EAA mgmt RP] --> [KMS & DID mgmt RP]
+  [(Q)EAA mgmt RP] --> [Auth RP]
+  [(Q)EAA mgmt RP] --> [Web app RP]
+  [Auth RP] -[#pink]- AuthAPIRP
+
+  [(Q)EAA mgmt RP] - "Verification API"
+  database "RP DB"
+  [(Q)EAA mgmt Holder] "OID4VP" .r[#lightblue].> "Verification API"
+
+  node "Relying Party API interfaces" {
+      [OID4VP] as [OID4VP RP] #lightblue
+      [OID4VP RP] -[#lightblue]- "OID4VP RP API"
+      [OID4VP RP] -[#lightblue]- "OID4VP MGMT API"
+      [OID4VP Client] -r[#lightblue]-> "OID4VP RP API"
+      [(Q)EAA mgmt RP] -[#lightblue]-> "OID4VP RP API"
+  }
+  node "Auth API interfaces RP" {
+      [OIDC IDP] as [OIDC IDP RP] #pink
+      [SIOPv2] as [SIOPv2 RP] #pink
+      interface PARRP [
+          PAR
+      ]
+      interface TokenRP [
+          Token
+      ]
+      interface AuthorizationOIDCRP [
+          Authorization
+      ]
+      interface AuthorizationSIOPv2RP [
+          Authorization
+      ]
+      [OIDC IDP RP] -u[#pink]- PARRP
+      [OIDC IDP RP] -r[#pink]- AuthorizationOIDCRP
+      [OIDC IDP RP] -d[#pink]- TokenRP
+      [SIOPv2 RP] -r[#pink]- AuthorizationSIOPv2RP
+
+  }
+
+
+}
+
+
+
+
+"Issuance API" .d..> "Issuance API interfaces"
+"Auth API" .d.> "Auth API interfaces"
+"Q(E)AA api" .d..> "Wallet transport"
+"Verification API" .d..> "Relying Party API interfaces"
+
+@enduml

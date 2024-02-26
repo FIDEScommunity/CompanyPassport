@@ -1,0 +1,129 @@
+@startuml
+skinparam maxMessageSize 200
+skinparam wrapWidth 300
+skinparam sequenceMessageAlign center
+skinparam BoxPadding 100
+
+autonumber "<b>(000)"
+
+title (Q)EAA Issuance over OID4VCI with Authorization Code Flow
+
+participant u as "User"
+participant b as "Browser"
+participant w as "Wallet Instance"
+participant rs as "Resource server/website"
+
+participant i  [
+  (Q)EAA Provider
+]
+
+participant idp as "IDP"
+
+== Credential Offer ==
+alt A) Wallet initiated
+  u --> w : open wallet, unlock wallet
+  u --> w : Select issuance of pre-configured (Q)EAA
+  hnote over w: Pre-configured (Q)EAAs containing credential_issuer(s) and Credential catalog
+else B) Issuer initiated
+  u -> b : Open Issuer's Website
+  b -> rs : Query website: HTTP GET <Credential Issuer URL>
+  rs -> i : OID4VCI MGMT API: HTTP POST <Create Credential Offer URL>(optional: attestation data)
+  alt #lightgreen a) JWT state
+  i -> i: create offline state JWT,\nsigned by Provider
+  else b) IDP session
+  i -> idp: Delegate to IDP/Request session\n or have IDP create full offer
+  idp -> i: HTTP 200 <session / state value>
+  else c) Credential Offer via IDP
+  i -> idp: Delegate to IDP to create offer and session\n(IDP could offload in a backchannel to issuer)
+  idp -> i: HTTP 200 <Credential Offer>
+  else d) No state; static offer (__not supported__)
+  end
+  i -> rs: HTTP 200 <Credential Offer>
+  rs -> b : HTTP 200\nHTML with static or unique issuer_state Credential Offer\n<Grant-Type: Authorization Code>
+  u --> w : open wallet, unlock wallet
+end
+
+hnote over b : deeplink or QR
+
+== Status feedback ==
+
+note over b,rs : The Browser for instance could refresh the "Resource server/website" using polling or the Provider website may use websockets or a webhook for instance
+
+loop
+b -> rs : HTTP GET <Provider website>\nCookie: sid=<color:#909>correlation id</color>
+rs -> i : look up session with <color:#909>correlation id</color>
+i -> i : match id with session
+i -> rs : return issuance progress/status
+rs -> b : HTTP 200 <HTML, continue flow>
+end
+
+
+== Issuance process ==
+w -> i : HTTP GET ./well-known/openid-credential-issuer Metadata
+i -> w : HTTP 200\n<Credential Issuer Metadata>
+
+w --> u : show (Q)EAAs and consent
+u --> w : user consents to receiving the (Q)EAA(s) with optional selection
+
+
+hnote over w, i: optional Wallet Attestation\n__needs more work__\n__WIP can be found in assets folder__\n see also https://vcstuff.github.io/draft-ietf-oauth-attestation-based-client-auth/draft-ietf-oauth-attestation-based-client-auth.html)
+
+w -> idp : HTTP POST:\n PAR (code_challenge, wallet attestation + PoP, redirect_uri, issuer_state from offer if present)
+alt #lightgreen a) JWT issuer_state
+  idp -> idp: verify offline state JWT,\nsigned by Issuer
+  else b) IDP session
+  idp -> idp : verify session and issuer_state value
+  else c) static offer (__not yet supported__)
+end
+alt #ffd optional Wallet Attestation
+  idp -> idp : verify client attestation\ncheck wallet solution status on trust list
+end
+idp -> w : HTTP 201 \n<PAR response request_uri, expires_in>
+
+w --> b : Open link <OID4VCI Authorization Request\n(/authorize request_uri)>
+b -> idp : HTTP GET <OID4VCI Authorization Request\n(/authorize request_uri))>
+group User Authentication
+  b <--> idp : <user authentication>
+  note over idp,b : IDP may perform any form of user authentication in the browser, this may be:\n- username/password\n- OID4VP\n-2/MFA -\n etc
+  hnote over b #orange: front channel: mobile (same) device auth
+end
+idp -> b : HTTP 302 redirect-uri <OID4VCI Authorization Response(authorization code)>
+b -> w: HTTP 302 redirect-uri, wallet scheme <OID4VCI Authorization Response(authorization code)>
+
+w -> idp : HTTP POST /token <Token Request(authorization code, PKCE code_verifier, wallet attestation + PoP, DPoP Header)>
+idp -> idp : lookup authorization code\ngenerate TokenResponse with DPoP access token\nverify PKCE challenge
+alt #ffd optional Wallet Attestation
+  idp -> idp : verify client attestation
+end
+idp -> w : HTTP 200 <Token Response(DPoP-bound accesss_token, c_nonce)>
+
+w -> w : generate key pair (subject) and Proof of Possession with c_nonce
+
+w -> i : HTTP POST <Credential Request(DPoP-bound access token, //device pub key or DID//)>\n***
+alt offline JWT IDP signed access token
+i -> i : lookup/validate access token offline
+else Opaque access token, or online IDP token validation
+i -> idp : HTTP <userinfo or introspect endpoint for instance>
+idp -> i : HTTP 200 <success response>
+end
+i -> i : validate subject key proof (signature, c_nonce)
+
+note over i: "opt: Callback implementation, database lookup or REST call to fetch information, or use info provided during offer creation"
+alt JSON-LD (Q)EAA
+  i -> i : generate JSON-LD W3C VC (Q)EAA with attestation data and //device pub key or DID// as subject id, sign with //provider priv key//
+else SD-JWT (Q)EAA
+  i -> i : generate SD-JWT (Q)EAA and Disclosures with attestation data and //device pub key or DID// as cnf key, sign with //provider priv key//
+else mdoc (Q)EAA
+  i -> i : generate mdoc (Q)EAA with attestation data and //device pub key// as deviceKey, sign with //provider priv key//
+else JWT VC
+  i -> i : generate JWT W3C VC with attestation data and //device pub key or DID// as sub claim, sign with //provider priv key//
+
+end
+i -> w : HTTP 200 <Credential Response((Q)EAA)>
+
+w <--> u : Optional consent to accept/store the (Q)EEA
+w -> w : store (Q)EAA
+hnote over w #orange: success
+
+rs --> b : Success issuance page (Issuer initiated,\nsee Status Feedback above)
+@enduml

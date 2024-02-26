@@ -11,6 +11,18 @@ The diagram is generic in nature and not tied to any implementation
 ![](../assets/High-level-roles-APIs.svg)
 [Plant UML source](../assets/High-level-roles-APIs.puml)
 
+> Legend:
+>
+> - KMS: Key Management System. This component is responsible for importing, generating and optionally exporting
+    cryptographic keys, which are typically asymmetrical using a private and public Key. The KMS also can generate
+    signatures
+    and perform encryption using these key, reason for this typical coupling is that some keys are protected by hardware
+    and often cannot be exported. The KMS should support Json Web Keys (JWKs).
+> - DID: Decentralized Identifier Management. This optional component provides DID resolution as well as management (
+    create, update, delete) of services, keys and the full DID. DIDs are used to bind 0 or more public keys to a
+    persistent identifier amongst others.
+> - Auth:
+
 ## ARF
 
 We take the ARF as a starting point, meaning Identity Wallet use cases for (Q)EAA must be supported. This does not
@@ -18,26 +30,26 @@ mean that other frameworks or technical interactions would not be supported.
 
 - **PID Provider:** The authoritative source issuing Personal (or Legal) Identification Data (PID) according to EiDAS2.
   Consisting of:
-   - **OID4VCI Component:** based on the "OpenID for Verifiable Credential Issuance"
-     specification [OIDC4VCI. Draft 13](https://openid.bitbucket.io/connect/openid-4-verifiable-credential-issuance-1_0.html)
-     to issue the PID.
-   - **National/eIDAS Identity Provider:** A preexisting identity systems based on SAML2 or OpenID Connect Core 1.0, as
-     used in the different Member States. Examples: DigiD (NL), e-Herkenning (NL)
-   - **Relying Party:** A component, authenticating the User with the national/eIDAS Identity Provider above
+    - **OID4VCI Component:** based on the "OpenID for Verifiable Credential Issuance"
+      specification [OIDC4VCI. Draft 13](https://openid.bitbucket.io/connect/openid-4-verifiable-credential-issuance-1_0.html)
+      to issue the PID.
+    - **National/eIDAS Identity Provider:** A preexisting identity systems based on SAML2 or OpenID Connect Core 1.0, as
+      used in the different Member States. Examples: DigiD (NL), e-Herkenning (NL)
+    - **Relying Party:** A component, authenticating the User with the national/eIDAS Identity Provider above
 - **(Q)EAA Provider:** A authoritative (requires QEAA) or non-authoritative (either QEAA or EAA) source issuing
   Personal (or Legal) attributes
-   - **OID4VCI Component:** based on the "OpenID for Verifiable Credential Issuance"
-     specification [OIDC4VCI. Draft 13](https://openid.bitbucket.io/connect/openid-4-verifiable-credential-issuance-1_0.html)
-     to issue the (Q)EAA.
-   - **Relying Party:** A component, authenticating the User. Depending on the use case authentication can be done with
-      - **the PID (_likely for QEAA only_):** in which case the (Q)EAA will act as a Relying Party (Verifier) for a
-        Presentation created by the Wallet Instance, according to
-        the [OID4VP, Draft 20](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) specification.
-      -
+    - **OID4VCI Component:** based on the "OpenID for Verifiable Credential Issuance"
+      specification [OIDC4VCI. Draft 13](https://openid.bitbucket.io/connect/openid-4-verifiable-credential-issuance-1_0.html)
+      to issue the (Q)EAA.
+    - **Relying Party:** A component, authenticating the User. Depending on the use case authentication can be done with
+        - **the PID (_likely for QEAA only_):** in which case the (Q)EAA will act as a Relying Party (Verifier) for a
+          Presentation created by the Wallet Instance, according to
+          the [OID4VP, Draft 20](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) specification.
+        -
 
 ## Generic components needed in OID4VC/ARF
 
-![](./OID4VCI.svg)
+[//]: # (![]&#40;../assets/OID4VCI.svg&#41;)
 
 # (Q)EAA Issuance
 
@@ -55,11 +67,11 @@ The following assumptions have been made:
 - the User optionally provides the RP with a valid PID, stored in their wallet
 - The User provides the RP with zero or more (Q)EAAs, stored in their wallet as optional pre-requisite
 - The Issuer and Wallet operate in a trust framework, which is either based on:
-   - OpenID Connect Federation
-   - EBSI
+    - OpenID Connect Federation
+    - EBSI
 - A high security implementation profile is required (HAIP)
 
-![](High%20Level%20QEAA%20flow.drawio.svg)
+![](../assets/High%20Level%20QEAA%20issuance%20flow.drawio.svg)
 
 The steps involved:
 
@@ -94,7 +106,7 @@ The steps involved:
 
 # High level (Q)EAA verification flow
 
-![](High%20Level%20QEAA%20verification%20flow.drawio.svg)
+![](../assets/High%20Level%20QEAA%20verification%20flow.drawio.svg)
 
 1. **Client Registration (optional):** The relying party (RP) or client must register with the OpenID provider (OP).
    This involves obtaining an optional client ID and client secret to authenticate and interact with the OP. If not used
@@ -104,8 +116,9 @@ The steps involved:
 
 3. **Authorization Request:** The RP initiates the authentication process by redirecting the user to the OP. The request
    includes parameters such as client ID, scope, and redirect URI.
-   - **Claims Request:** The RP may request specific claims or information about the user to be included in the verifiable
-     presentation.
+    - **Claims Request:** The RP may request specific claims or information about the user to be included in the
+      verifiable
+      presentation.
 
 4. **User Consent:** The user is prompted to authenticate themselves and grant consent to share specific information
    with the

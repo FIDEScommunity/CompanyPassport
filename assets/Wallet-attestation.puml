@@ -1,0 +1,36 @@
+@startuml
+skinparam maxMessageSize 200
+skinparam wrapWidth 300
+skinparam sequenceMessageAlign center
+skinparam BoxPadding 100
+
+autonumber "<b>(000)"
+
+title Wallet attestation
+
+participant u as "User"
+participant b as "Browser"
+participant w as "Wallet Instance"
+participant rs as "Resource server/website"
+
+participant i  [
+  (Q)EAA Provider
+]
+
+participant idp as "IDP"
+
+
+
+  w -> i : HTTP GET client attestation nonce
+  alt #lightblue a) Issuer client nonce
+  i -> i : generate and store nonce
+  else b) IDP client nonce
+  i -> idp: request client nonce
+  idp -> i: HTTP 200 <client nonce>
+  end
+  i -> w : HTTP 200 <client attestation nonce>
+  w -> w : get client attestation from Wallet Provider backend (client attestation nonce)
+  w -> w : generate PoP for client attestation
+
+
+@enduml

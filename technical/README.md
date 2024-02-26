@@ -1,13 +1,15 @@
 > TODO: Provide some texts arround the different subjects
 
-# OID4VCI: Issuance of PIDs (Q)EAA (OID4VCI)
+# OID4VCI: Issuance of PIDs (Q)EAAs
 
 See [Authorized code flow Issuance](./Issuance-Authorization-code.md) for an explanation of
 the [flow diagram](../assets/Issuance-Authorization-code.svg)
 
-# OID4VP: Verification of PIDs and (Q)EAA
+# OID4VP: Verification of PIDs and (Q)EAAs
 
-TODO:
+See [Cross Device OID4VP](./OID4VP-cross-device.md) for an explanation of
+the [flow diagram](../assets/OID4VP-cross-device.svg)
+
 
 ## Presentation Exchange
 

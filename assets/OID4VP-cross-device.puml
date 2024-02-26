@@ -1,0 +1,98 @@
+@startuml
+skinparam maxMessageSize 200
+skinparam wrapWidth 300
+
+skinparam sequenceMessageAlign center
+skinparam BoxPadding 100
+autonumber "<b>(000)"
+
+title (Q)EAA OID4VP only (cross device)
+
+participant u as "User"
+participant b as "Browser\n(other device)"
+participant w [
+                Wallet Instance
+]
+participant rs as "Resource server/RP website"
+participant v [
+                Relying Party Component
+]
+
+
+u --> b : browse to <RP website>
+
+b -> rs : HTTP GET <RP website>
+
+rs -> v: Management API: Generate new Authorization Request URI
+
+v -> v : generate new unique state value, for instance to use as a browser session named <color:#green>session_id</color>
+
+v -> v : generate optional ephemeral key pair (not supported yet) for response encryption
+
+
+v -> v : create OID4VP Authorization Request,\n sign with //RP private key//,\n, request stored in <request_uri>,\nbind everything to correlation id
+note left: Authorization Request includes:\n- presentation_definition\n- state, client_id\n- nonce in OID4VP Request Object
+
+v -> v : ensure OID4VP Authorization Request can be retrieved using unique URL using correlation id, this is the request_uri
+
+v -> rs : Authorization Request URI
+
+rs -> rs : Generate QR code using Authorization Request URI
+
+rs -> b : HTTP 200: HTML containing QR with wallet-link openid4vp://authorize?")\nclient_id=..&request_uri=<request_uri>\nSet-Cookie: sid=<color:#green>session_id</color>
+u --> w : launch & unlock wallet
+
+b -> w : scan QR-Code with "openid4vp://..."
+w -> w: QR result containing openid4vp:// link
+
+w -> w: Extract request_uri and client_id
+w -> w: Evaluate trust associated with client_id
+
+
+w -> v : HTTP GET Signed request object from <request_uri>
+hnote over v: **TODO: new request_uri_method POST, allowing to evaluate technical capabilities of the wallet**
+v -> w : HTTP 200 <JWT-Secured Request Object(presentation_definition, nonce etc)>
+w -> w : validate Authorization Request JWT using //public key of RP//
+w -> w : Validate presentation_definition
+w -> w : Filter out non matching (Q)EAAs according to presentation_definition;
+w -> w : Notify user in case credentials are missing
+note left: In case of Trust Framework it is probably possible to redirect user to (Q)EAA Provider that can provide the missing (Q)EEA(s)
+u --> w : user consent for presenting the (Q)EAA(s); showing the VCs, and optionally sub-selecting the VCs in case there are multiple VCs satisfying a presentation_definition constraint
+
+note right: See Presentation Exchange explanation document
+
+alt JSON-LD (Q)EAA
+   w -> w : generate JSON-LD W3C (Q)EAA presentation according to <presentation_definition> with //device pub key(s) or DIDs//, sign with //wallet priv key(s)//
+else SD-JWT (Q)EAA
+  w -> w : generate KB-JWT by signing the nonce and aud(ience) with //wallet private key//
+  w -> w : generate SD-JWT presentation according to <presentation_definition> by removing unnecessary Disclosures and attaching KB-JWT
+else mDoc (Q)EAA
+  w -> w : generate deviceAuth by signing over SessionTranscript with //wallet private key//
+  w -> w : generate issuerAuth according to <presentation_definition> by removing unnecessary Releases and attaching deviceAuth
+else W3C JWT VP
+  w -> w : generate W3C Verifiable Presentation according to <presentation_definition> with //device pub key(s) or DIDs// as iss(uer) claim, sign with //wallet priv key(s)//
+end
+
+w <--> u : **Ask for authentication, user pin or biometrics (consent could also go here)**
+w -> w : create vp_token, including the (Q)EAA presentation(s) and presentation_submission descriptor
+
+w -> v : HTTP POST <Authorization Response(presentation_submission, vp_token, state)> (optionally encrypted to //ephemeral public key of RP//, not supported yet)
+v -> v : optionally decrypt Authorization Response with //public key of RP// (not supported yet)
+v -> v : look up state in existing sessions and match session
+v -> v : verify contents of <vp_token>:\n- JSON-LD, MDOC, SD-JWT, JWT signatures of the presentation(s) and verify signatures of its containing credentials, including statusLists. (See also StatusList2021 flow)
+note left: See also StatusList2021 process/document
+v -> v : The RP verifies the vp_token and presentation_submission against the presentation_definition
+
+v -> w : HTTP 200
+note right: in cross device flow the redirect is omitted here
+
+loop Browser information progress
+note over b,rs : The Browser for instance could refresh the "Resource server/website" using polling or the RP website may use websockets or a webhook for instance
+
+b -> rs : HTTP GET <RP website>\nCookie: sid=<color:#green>correlation id</color>
+rs -> v : look up session with <color:#green>correlation id</color>
+v -> v : match verification result
+v -> rs : return result
+rs -> b : HTTP 200 <HTML, continue flow>
+end loop
+@enduml

@@ -1,0 +1,56 @@
+@startuml
+'Lets define some common colors globally
+!$C_PRT = "#118888"
+!$C_ARG = "#daa520"
+!$C_VAR = "#daa520"
+
+'Ensure messages are not too wide
+skinparam maxMessageSize 200
+skinparam wrapWidth 300
+
+
+!function params($p)
+!return "<color " + $C_ARG + ">"+ $p + "</color>"
+!endfunction
+
+skinparam sequenceMessageAlign center
+
+skinparam BoxPadding 100
+
+autonumber "<b>(000)"
+
+title StatusList2021 Verification Process
+
+participant i as "(Q)EAA Provider"
+participant rs as "Provider Resource server/CDN"
+participant v [
+                Relying Party or Wallet
+]
+
+loop Upon revocation
+i -> rs : Update StatusList with latest info
+end loop
+
+i --> v : Receive Presentation\nwith (Q)EAAsl\n(for instance via OID4VCI)
+
+
+v -> v : Verify Presentation Signature
+loop for every (Q)EAA
+v -> v : Verify individual (Q)EAA signatures
+v -> v : Check credential payload/schema
+v -> v : Check for one or more statusList entries
+
+loop for every StatusList entry
+v -> rs : HTTP GET: Statuslist URI from the `statusListCredential` value in the VC
+rs -> v : HTTP 200: StatusList2021 VC
+v -> v : Check signatures of the StatusList2021 VC,\nmatching issuer against issuer of VC
+v -> v : Match purpose of StatusList2021 with purpose in VC
+v -> v : Decompress bitstring
+v -> v : Lookup value 'statusListIndex' in bitstring
+v -> v : In case of 1 return validation 'failure',\n in case of 0 return 'success'
+end loop
+end loop
+v -> v : Return overall verification status results
+v -> v : <logic how to handle verification failures>
+
+@enduml

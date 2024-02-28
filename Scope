@@ -1,0 +1,11 @@
+Organisatie structuur
+```mermaid
+Graph TD;
+  Persoon A --> Holding A;
+  Persoon B --> Holding B;
+  Persoon C --> Holding C;
+  Holding A --> Werkmaatschappij;
+  Holding B --> Werkmaatschappij;
+  Holding C --> Werkmaatschappij;
+```
+`

@@ -1,3 +1,9 @@
+---
+layout: page
+title: Presentation Exchange
+hero_height: is-fullwidth
+---
+
 # Presentation Exchange
 
 Whenever the `response_type` of the `Request Object` contains the value `vp_token`, `code` and

@@ -1,3 +1,8 @@
+---
+layout: page
+title: Verification
+hero_height: is-fullwidth
+---
 # OID4VP vp_token cross-device flow
 
 1. User browses to Relying Party (RP) website
@@ -66,7 +71,7 @@ body/payload:
 
 ```
 
-See also: [Presentation Exchange explaination](./PresentationExchange.md)
+See also: [Presentation Exchange explanation](./PresentationExchange.md)
 
 17. The RP website return the signed Authorization Request Object JWT
 18. The wallet validates the Authorization Request signature (JWT) using the RP's public key

@@ -1,0 +1,15 @@
+- name: Scope
+  link: /scope/
+- name: Functional
+  link: /functional/
+- name: Technical
+  link: /technical/
+  dropdown:
+    - name: Issuance
+      link: /technical/issuance/
+    - name: Verification
+      link: /technical/verification/
+    - name: Revocation
+      link: /technical/status-list/
+- name: Glossary
+  link: /glossary/

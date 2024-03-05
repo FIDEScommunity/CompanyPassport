@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Scope
-hero_height: is-fullwidth
 ---
 
 The current scope of the project is to incorporate a new Dutch corporation with the Chamber of Commerce (

@@ -1,149 +1,102 @@
-# Company Passport Architecture
+# Company Passport - Technical Specification Documentation
 
-This repository contains the functional and technical components, requirements and architecture for the Company Passport
-project. You will need to support these specification in order for your software solution to be compatible with it.
+This repository contains the source code of the technical documentation for the Company Passport project. To view the live version of this documentation, please visit [https://dutchblockchaincoalition.github.io/CompanyPassport](https://dutchblockchaincoalition.github.io/CompanyPassport).
 
-## Project description
+## Contribution Guideline
 
-Company Passport is a trust framework that is evolved from an NL based innovation
-project with the Dutch Chamber of Commerce, Dutch Tax Office, ABN AMRO bank,
-the Royal Dutch Association of Civil-law Notaries (KNB) and the Dutch Blockchain
-Coalition.
-The trust framework is intended to facilitate use cases that require validated data
-related to legal entities. It uses SSI (Self Sovereign Identity) technologies and should
-align with the upcoming eIDAS 2 regulations. It is not a software solution but
-describes how compliant software solutions interact. These software solutions can
-be provided by any public or private third party.
-The initial focus will address NL based use cases. However, the objective is to
-assume a cross border, international context that could address all kind of different
-uses cases across country borders and different domains. Company Passport work
-may provide valuable input to other trust frameworks and initiatives related to
-organizational digital identity. For instance the eIDAS/EUDI Wallet LSP’s, EBSI,
-Gaia-X, ESG reporting (Environmental, Social, Governance), EU DPP (Digital
-Product Passports), ESPR (Ecodesign for Sustainable Products Regulation), CSRD
-(Corporate Sustainability Reporting Directive) etc
-As part of the overall Company Passport trust framework, the architectural and
-technical specifications need to be agreed upon and described. This work is caried
-out by the Company Passport Architecture Working Group and documented in this
-Github repository.
+The documentation is built using a static site generator (Jekyll) and hosted on GitHub Pages for better readability. You can make contributions to this documentation by forking the repository, making the changes and opening a PR. Once your the PR is accepted the site is automatically built and deployed. The Jekyll theme that is used is []().
 
-## Use case
+### Local environment setup
 
-As the initial use case the Architecture WG will focus on the use case of founding a
-new “Besloten Vennootschap” (BV), a Dutch private limited liability company (Ltd.).
-This use case acts as an example of a process that involves the exchange of
-company data between a range of stakeholders, the company and its founders and
-employees. However, the objective is to provide a generic trust framework and
-architecture that can also be applied to other use cases and with different credentials
-and stakeholders. During the course of the project additional example use cases
-may be added.
+In order to preview the changes you make, you will need to install Jekyll. If you have Ruby and RubyGems installed, you can simply run `gem install bundler jekyll`. Otherwise, please follow the [Jekyll Installation Guide](https://jekyllrb.com/docs/installation/) for your operating system. Once Jekyll is installed, you can install the dependencies for our site.
 
-### Example interactions
+```sh
+cd docs # this is the root of our documentation source
+bundle install --gemfile Gemfile.dev
+```
 
-1. **Notary Verification & Incorporation Deed**:
-   Company representatives present statutes to a notary, who verifies stakeholder identities and statutes legality, then
-   **issues the deed of incorporation**, formalizing company establishment.
+#### Running a local server
+Once Jekyll is installed, you can run a local development server to preview the site by running the following command:
 
-2. **Chamber of Commerce Registration**:
-   The company submits incorporation documents to the Chamber of Commerce (KVK), which verifies and approves these
-   documents, issuing a company registration number and formally registering the company.
+```sh
+# in <ROOT>/docs
+bundle exec jekyll serve --gemfile Gemfile.dev
+```
+> **TIP:** If you use the Live Reload plugin in your editor, you can connect to the server by adding the `--livereload` parameter.
 
-3. **Tax Registration**:
-   The company applies for tax identification and VAT registration with the Tax Authority (Belastingdienst), which
-   verifies the company's legal status and tax eligibility to ensure national tax regulation compliance.
+### Structure
 
-4. **Bank Account Opening**:
-   The company approaches a bank to open a business account, necessary for financial transactions. The bank conducts KYC
-   and AML checks to ensure financial regulation compliance before account creation.
+When the site is deployed, the url routing is generated based on the directory structure of the `/docs` directory.
 
-![Alt text](assets/use-case-seq.svg)
+Some examples:
+- The `/docs/index.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport`
+- The `/docs/technical/index.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport/technical`
+- The `/docs/technical/status-list.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport/technical/status-list`
 
-## Scope
+### Creating a page
 
-The current scope of the project is to incorporate a new Dutch corporation with the Chamber of Commerce (
-KvK), using a 'BV' as legal entity.
-The corporation also referred to as company later, will have multiple directors and will get at least 10 employees.
-A Notary (KNB) is managing the screening and validation of the new corporations and its future directors and supporting
-the incorporation process. After the corporation is registered with the KvK, the registration with
-the Tax Office (Belastingdienst) needs to happen. The Tax Office will issue a TAX/RSIN number.
-Once the corporations is incorporated with the KvK, the directors open a bank account for the corporation.
+To create a new page, simply create a new markdown file in the desired location. At the top of the document, add the following [frontmatter](https://dev.to/dailydevtips1/what-exactly-is-frontmatter-123g) to set the layout and title of your page.
 
-## Credential Types
+```yaml
+---
+layout: page
+title: <the title of your page>
+---
 
-Below an overview of verifiable credentials that are required during the founding of a
-private limited liability company in the Netherlands (“BV”). This list may not be
-exhaustive. The Architecture WG will not define the details of the data models
-(schemes) for each of these credentials. A generic json schema file is assumed for
-each of the credentials. The Company Passport Trust Framework Working Group is
-provide data models for the various credentials.
+For more advanced configuration options, please see the frontmatter options for [Jekyll](https://jekyllrb.com/docs/front-matter/) and the [Bulma Clean Theme documentation].
+```
 
-### Incorporation Deed
+### Top navigation
 
-“Oprichtingsakte” in Dutch. Company representatives present statutes to a
-notary, who verifies stakeholder identities and statutes legality, then issues the
-deed of incorporation, formalizing company establishment.
+The top navigation bar is configured in `/docs/_data/navigation.yml`. Please see [the documentation](https://www.csrhymes.com/bulma-clean-theme/docs/navigation/top-navigation/) for additional info.
 
-### Chamber of Commerce Number
+### Assets and links
 
-“KVK nummer” in Dutch. Incorporation documents are provided to the
-Chamber of Commerce (KVK), which verifies and approves these documents,
-issuing a company registration number and formally registering the company.
+Images and other static assets that you want include into your documentation should be added to the `/docs/assets` directory. All the files located in this directory are copied in the build process and will be included in the deployment. PlantUMl diagrams are built automatically and don't need to be generated manually. See the [section on PlantUML diagrams](#plantuml-diagrams) for more info.
 
-### RSIN
+Although most of the documentation can be written using normal markdown, the format for linking is a little different. Using this format ensures that the file paths are set correctly during local development, as well as when the site is being deployed.
 
-An identification number for legal entities and partnerships issued by the
-Dutch Chamber of Commerce to a legal entity. The RSIN is automatically
-provided to the Dutch Tax Office who uses the RSIN to generate other
-identifiers. Not all Dutch legal entities get an RSIN For instance sole
-proprietorship (“eenmanszaak”).
+#### Internal site links
+Let's say you want to include an image located in the `/docs/assets/my_image.png` directory. Normally, you would do that by adding `![image name](relative-path-to-assets-dir)` to your markdown file. Instead of passing a relative file path, we can specify a relative path (with the `/docs` directory as the root) and let Jekyll figure out the rest. So instead, you include the image by writing `![image name]({{'/assets/my_image.png' | relative_url}})`. By adding the `relative_path` filter, Jekyll will prefix the file path with the correct base url.
 
-### VAT ID
+> **NOTE:** This formatting rule does not only apply to images, but to all internal site links.
 
-In Dutch “BTW ID”. The company applies for tax identification and VAT
-registration with the Tax Authority (Belastingdienst), which verifies the
-company&#39;s legal status and tax eligibility to ensure national tax regulation
-compliance.
+#### Source code links
 
-### Bank Account Number
+If you want to link to a source file within this repository, you can do so by using the following custom variables:
+- `{site.github_repo}` - will be substituted with `https://github.com/DutchBlockchainCoalition/CompanyPassport`
+- `{site.assets_src}` - will be substituted with `https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/main/docs/assets`
 
-The company approaches a bank to open a business account, necessary for
-financial transactions. The bank conducts KYC and AML checks to ensure
-financial regulation compliance before account creation. During this KYC and
-AML checks above mentioned (re-usable) verifiable credentials are requested
-acting as legitime proof of checks already done by other trusted parties.
+So let's say you want to link to a plantuml source file located at `/docs/assets/my_diagram.puml`, you can do so by formatting your link as such: `[view source file]({{ site.assets_src }}/my_diagram.puml)
 
-## Glossary
+### PlantUML Diagrams
 
-### Company passport
+PlantUML is a scripting language for creating software diagrams by writing code. This has various benefits, including simplified version management. Most markdown renderers have no native support for rendering PlantUML diagrams and rendering a diagram therefore usually requires the author to manually export the image. This can become quite tedious and lead to version mismatches between the diagram source code and rendered image. Luckily, GitHub Actions and Jekyll can help us out.
 
-Trust framework (“Afsprakenstelsel”) to facilitate the exchange of verifiable
-data about legal entities. [More info](https://dutchblockchaincoalition.org/en/use-cases-2/ondernemingspaspoort-1).
+The site's current configuration allows you to add PlantUML diagrams in two ways:
+  1. By inlining the diagram source code within your markdown file
+  2. By defining and referencing a PlantUML source file
 
-### Organizational wallet
+#### **Option 1:** Inline
 
-Software component, acting on behalf of an organization (any legal entity),
-capable of receiving and storing verifiable credentials (VCs), issuing
-(generating) VCs, verifying VCs and presenting verifiable presentations (VPs)
-based on those VCs. Most often a web based application that can be used
-multiple persons within an organization. But may also be a mobile
-(iOS/Android) app.
+For small diagrams, you can embed the PlantUML source code directly into your markdown file as follows:
 
-### Personal wallet(s)
+```
+{% plantuml %}
+@startuml
+Bob -> Alice : hello
+@enduml
+{% endplantuml %}
+```
 
-Software component, acting on behalf of a natural person, capable of
-receiving and storing verifiable credentials (VCs), issuing (generating) self-
-issued VCs, verifying VCs and presenting verifiable presentations (VPs)
-based on those VCs. Most often a mobile (iOS/Android) app but may also be
-a web based application.
+It's recommended to use a [separate source](#option-2-using-a-source-file) file for larger diagrams.
 
-### Process Guidance System
+#### **Option 2:** Using a source file
 
-In previous phases of the Company Passport project the term “Process
-Guidance System” (PGS) has often been used. It refers to a web application
-or mobile app that guides people through particular processes. For instance,
-the founding of a company. During the process PGS application interacts with
-organizational and/or personal wallets to request or exchange verifiable
-credentials. From an architectural perspective a PGS application is
-considered as any relying party system that is requesting the presentation of
-particular verifiable credentials. In case a verifiable credential is not yet
-available the PGS can redirect to issuers of the verifiable credential.
+During the build process, all source files within the `/docs/assets` directory that end with `.puml` are compiled to an `.svg` file. This means that order to include your diagram into your document, you will have to use the `.svg` extension.
+
+##### Example
+
+In order to display a diagram of which the source file is `/docs/assets/my_diagram.puml`, you will need to reference it like this `![my diagram]({{'/assets/my_diagram.svg' | relative_url}})` (`.svg`, not `.puml`).
+
+> **NOTE:** Jekyll doesn't support this feature natively. When developing locally, the diagrams are generated by the `:post_build` hook in `/docs/_plugins/generate_diagrams_hook.rb`. In CI however, this is not possible because GitHub Pages currently only allows a curated selection of plugins to be used. Therefore this is handled by a separate CI workflow action.

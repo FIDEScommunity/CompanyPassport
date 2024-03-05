@@ -1,8 +1,6 @@
 ---
 layout: page
-url: /technical/status-list
 title: Revocation
-hero_height: is-fullwidth
 ---
 # Statuslist
 

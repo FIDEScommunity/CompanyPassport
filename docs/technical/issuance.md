@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Issuance
-hero_height: is-fullwidth
 ---
 
 ## Issuance using Authorization Code flow

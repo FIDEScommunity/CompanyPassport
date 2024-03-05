@@ -13,6 +13,8 @@ Party). The diagram explains the components which are explained in more details 
 The diagram is generic in nature and not tied to any implementation
 
 ![]({{'assets/High-level-roles-APIs.svg' | relative_url }})
+{{'assets/High-level-roles-APIs.svg' | relative_url}}
+
 [Plant UML source]({{ site.assets_src }}/High-level-roles-APIs.puml)
 
 > Legend:

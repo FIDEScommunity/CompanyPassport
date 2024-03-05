@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Presentation Exchange
-hero_height: is-fullwidth
 ---
 
 # Presentation Exchange

@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Verification
-hero_height: is-fullwidth
 ---
 # OID4VP vp_token cross-device flow
 

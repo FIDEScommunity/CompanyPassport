@@ -18,16 +18,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: company-passport
+title: Company Passport
 email: karim@animo.id
 description: >- # this means to ignore newlines until "baseurl:"
   This site contains the functional and technical components, requirements and architecture for the Company Passport
   project. You will need to support these specification in order for your software solution to be compatible with it.
-baseurl: "/CompanyPassport" # the subpath of your site, e.g. /blog
-# url: "http://127.0.0.1:4000/CompanyPassport"
-url: ""
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  DutchBlockchainCoalition
 
 github_repo: https://github.com/DutchBlockchainCoalition/CompanyPassport
 assets_src: https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/main/assets
@@ -35,11 +31,16 @@ assets_src: https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/mai
 # Build settings
 theme: bulma-clean-theme
 plugins:
-  - jekyll-feed
   - jekyll-plantuml-lite
 
 permalink: pretty 
-fixed_navbar: top
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      hero_height: is-fullwidth
 
 
 

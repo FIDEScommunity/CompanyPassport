@@ -1,14 +1,13 @@
 ---
 layout: page
 title: Technical Specification
-hero_height: is-fullwidth
 ---
 > TODO: Provide some texts a
 > round the different subjects
 
 # OID4VCI: Issuance of PIDs (Q)EAAs
 
-See [Authorized code flow Issuance](./Issuance-Authorization-code.md) for an explanation of
+See [Authorized code flow Issuance](./issuance#metadata) for an explanation of
 the [flow diagram]({{'/assets/Issuance-Authorization-code.svg' | relative_url}})
 
 # OID4VP: Verification of PIDs and (Q)EAAs

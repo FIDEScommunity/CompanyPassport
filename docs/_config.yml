@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   This site contains the functional and technical components, requirements and architecture for the Company Passport
   project. You will need to support these specification in order for your software solution to be compatible with it.
 github_username:  DutchBlockchainCoalition
-
+repository: DutchBlockchainCoalition/CompanyPassport
 github_repo: https://github.com/DutchBlockchainCoalition/CompanyPassport
 assets_src: https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/main/assets
 

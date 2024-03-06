@@ -2,6 +2,7 @@
 layout: page
 title: Company Passport
 subtitle: Specification
+hero_height: is-medium
 ---
 
 # Project description

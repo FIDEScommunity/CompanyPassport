@@ -1,10 +1,12 @@
 # Company Passport - Technical Specification Documentation
 
-This repository contains the source code of the technical documentation for the Company Passport project. To view the live version of this documentation, please visit [https://dutchblockchaincoalition.github.io/CompanyPassport](https://dutchblockchaincoalition.github.io/CompanyPassport).
+> **For a live version of this documentation, see [https://dutchblockchaincoalition.github.io/CompanyPassport](https://dutchblockchaincoalition.github.io/CompanyPassport)**
+
+This repository contains the source code of the technical documentation for the Company Passport project.
 
 ## Contribution Guideline
 
-The documentation is built using a static site generator (Jekyll) and hosted on GitHub Pages for better readability. You can make contributions to this documentation by forking the repository, making the changes and opening a PR. Once your the PR is accepted the site is automatically built and deployed. The Jekyll theme that is used is []().
+The documentation is built using a static site generator ([Jekyll](https://jekyllrb.com/)) and hosted on [GitHub Pages](https://pages.github.com/) for better readability. You can make contributions to this documentation by forking the repository, making the changes and opening a PR. Once your the PR is accepted the site is automatically built and deployed. The Jekyll theme that is used is [Bulma Clean Theme](https://www.csrhymes.com/bulma-clean-theme/).
 
 ### Local environment setup
 
@@ -67,7 +69,7 @@ If you want to link to a source file within this repository, you can do so by us
 - `{site.github_repo}` - will be substituted with `https://github.com/DutchBlockchainCoalition/CompanyPassport`
 - `{site.assets_src}` - will be substituted with `https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/main/docs/assets`
 
-So let's say you want to link to a plantuml source file located at `/docs/assets/my_diagram.puml`, you can do so by formatting your link as such: `[view source file]({{ site.assets_src }}/my_diagram.puml)
+So let's say you want to link to a PlantUML source file located at `/docs/assets/my_diagram.puml`, you can do so by formatting your link as such: `[view source file]({{ site.assets_src }}/my_diagram.puml)
 
 ### PlantUML Diagrams
 

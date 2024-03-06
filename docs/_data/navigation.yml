@@ -1,5 +1,10 @@
 - name: Scope
   link: /scope/
+  dropdown:
+    - name: Use Case
+      link: /scope/use-case
+    - name: Credential Types
+      link: /scope/credential-types
 - name: Functional
   link: /functional/
 - name: Technical

@@ -1,6 +1,10 @@
-# Scope Company Passport
+---
+layout: page
+title: Use Case
+---
 
-## Organisation structure
+## Organization structure
+
 ```mermaid
 flowchart TD;
   Person_A--> |100% shareholder| Holding_A;
@@ -40,8 +44,8 @@ flowchart TD;
   - Does not have a personal wallet
   - Has an eIDAS High Digital Identity
 ### Holding C
-  - Does not have an organisational wallet
-  - Has 1 independently authorised director:
+  - Does not have an organizational wallet
+  - Has 1 independently authorized director:
     - Person C
   - Has 1 100% shareholder
     - Person C
@@ -49,7 +53,8 @@ flowchart TD;
   - Does not have a personal wallet
   - Has an eIDAS High Digital Identity
 
-## Flow usecase Horizon 1
+## Flow use case Horizon 1
+
 ### PID Issuance to Holding A
 ```mermaid
 sequenceDiagram

@@ -32,9 +32,9 @@ assets_src: https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/mai
 theme: bulma-clean-theme
 plugins:
   - jekyll-plantuml-lite
+  - jekyll-mermaid
 
 permalink: pretty 
-
 defaults:
   -
     scope:

@@ -1,3 +1,9 @@
+---
+layout: page
+title: Functional Requirements
+hero_height: is-fullwidth
+---
+
 # Functional Requirements
 
 This page describes the functional requirements for an [Organizational Wallet](../glossary.md#organizational-wallet). Although the organizational wallet described in the requirements is intended as a general purpose organizational wallet, the initial requirements are defined based on the first use case of the Architecture WG: founding a new "Besloten Vennootschap" (BV), a Dutch private limited liability company (Ltd.).
@@ -5,6 +11,8 @@ This page describes the functional requirements for an [Organizational Wallet](.
 The requirements are defined through the following categories:
 - 🚧 [User stories](#user-stories)
 - 🚧 [Feature list](#feature-list) (with MoSCoW prioritization)
+- 🚧 [Non functional requirements](#non-functional-requirements)
+- 🚧 [Use case specific user stories](#use-case-specific-user-stories)
 - Use cases
 - Component diagram
 
@@ -107,3 +115,25 @@ Some notes on the user stories:
 | E.1 Authenticate using Legal Entity Representative Attestation | C      |                                                                                 |
 | F.1 View Audit Log                                             | M      |                                                                                 |
 | F.A.1 Limit Viewers of Audit Log                               | S      |                                                                                 |
+
+### Use Case Specific User Stories
+
+This section lists user stories that are specific to the use case of founding a new "Besloten Vennootschap" (BV), a Dutch private limited liability company (Ltd.). Most of these user stories can be handled by the general user stories defined above, but are to show the general requirements cover the use case specific requirements as well.
+
+1. As a user I want to receive an OprichtingsAkte Attestation from a notary on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the OprichtingsAkte Attestation in the future.
+2. As a user I want to present an OprichtingsAkte Attestation in the Organizational Wallet on behalf of the Legal Entity to the Dutch Chamber of Commerce (KvK), so that the Dutch Chamber of Commerce can verify that the Legal Entity ...?
+4. As a user I want to receive an Uitreksel Attestation from the Dutch Chamber of Commerce (KvK) on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the Uitreksel Attestation in the future.
+5. As a user I want to receive an RSIN Attestation from the Dutch Chamber of Commerce (KvK) on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the Uitreksel Attestation in the future.
+  - RSIN attributes may also be part of Uitreksel Attestation
+6. As a user I want to present an Uitreksel Attestation in the Organizational Wallet on behalf of the Legal Entity to the Dutch Tax Authority, so that the Dutch Tax Authority can verify that the Legal Entity is registered at the Dutch Chamber of Commerce (KvK).
+6. As a user I want to receive an "VAT ID" Attestation from the Dutch Tax Authority (Belastingdienst) on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the "VAT ID" (Belastingdienst) Attestation in the future.
+7. As a user I want to present an Uitreksel Attestation in the Organizational Wallet on behalf of the Legal Entity to an accredited Dutch bank, so that the accredited dutch bank can verify that the Legal Entity is registered at the Dutch Chamber of Commerce (KvK).
+8. As a user I want to receive an "Bank Account" Attestation from a accredited Dutch bank on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the "Bank Account" Attestation in the future.
+
+## Non Functional Requirements
+
+This section lists the non-functional requirements for the Organizational Wallet (some may be more technical requirements and extracted later).
+
+- 24/7 availability
+- Try to align with DIIP and ARF (where possible)
+- Credentials must be able to be linked to a hardware backed cryptographic key

@@ -7,6 +7,9 @@
       link: /scope/credential-types
 - name: Functional
   link: /functional/
+  dropdown:
+    - name: Requirements
+      link: /functional/requirements
 - name: Technical
   link: /technical/
   dropdown:

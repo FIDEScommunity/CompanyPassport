@@ -22,7 +22,7 @@ Once Jekyll is installed, you can run a local development server to preview the 
 
 ```sh
 # in <ROOT>/docs
-bundle exec jekyll serve --gemfile Gemfile.dev
+bundle exec --gemfile Gemfile.dev jekyll serve 
 ```
 > **TIP:** If you use the Live Reload plugin in your editor, you can connect to the server by adding the `--livereload` parameter.
 

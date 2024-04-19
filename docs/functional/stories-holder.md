@@ -1,22 +1,15 @@
 ---
 layout: page
-title: Functional Requirements
+title: User Stories - Holder
 hero_height: is-fullwidth
 ---
 
-# Functional Requirements
+> NOTE: For now combined, but will be spilt up into issuer-holder-verifier
+> TODO: for each user story add a Title, Number, Description.
 
-This page describes the functional requirements for an [Organizational Wallet](../glossary.md#organizational-wallet). Although the organizational wallet described in the requirements is intended as a general purpose organizational wallet, the initial requirements are defined based on the first use case of the Architecture WG: founding a new "Besloten Vennootschap" (BV), a Dutch private limited liability company (Ltd.).
-
-The requirements are defined through the following categories:
-- 🚧 [User stories](#user-stories)
-- 🚧 [Feature list](#feature-list) (with MoSCoW prioritization)
-- 🚧 [Non functional requirements](#non-functional-requirements)
-- 🚧 [Use case specific user stories](#use-case-specific-user-stories)
-- Use cases
-- Component diagram
-
-## User stories
+| User Story                                       |
+| ------------------------------------------------ |
+| [A.1 Request Attestation](#a1-receive-attestion) |
 
 Some notes on the user stories:
 - All stories currently use "user" as the persona. There are likely a few roles that we can define, independent on the individual permissions that are required for certain tasks. To not go too meta (user can configure which users can configure to do ...). So these should likely be split up into user and admin. By default an admin can do almost everything, and users can by default do almost nothing. Users can be given permissions to do certain things. Additional stories can be added based on roles, so it's easier to have a group of users that can do certain things.
@@ -25,12 +18,21 @@ Some notes on the user stories:
   - It would be good to good one level deeper on the user stories on which specifications, ecosystems, regulations or frameworks need to be followed. So "As a user I can receive an SD-JWT credential from an OID4VCI issuer so that ..." and "As a user I can receive an mDOC credential from an OID4VCI issuer so that ...". These are different user stories, with both their own complexities and underlying use cases.
 - All terms used here (often with Capital letter) are based on the [Glossary](../glossary.md) and the definitions from the Architecture Reference Framework (also linked in the glossary).
 
-### A. Receiving Attestations
+### A. Requesting Attestations
 
-1. As a user I want to receive an Attestation on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the Attestation in the future.
+### A.1 Request Attestation - Wallet Initiated
+
+As a user I want to receive an Attestation on behalf of the Legal Entity in the Organizational Wallet, so that the Legal Entity and any of it's representatives can use the Attestation in the future.
+
+### A.4 Request Attestation - Issuer Initiated
+
+As a user I want to request an Attestation to be issued to the Organizational Wallet on behalf of the Legal Entity from an Attestation Provider.
+
+--- 
+
 2. As a user I want to view the Attributes of an Attestation in the Organizational Wallet, so that I can check certain details of the Attestation such as the issuance date, the verification date, the revocation state, and other attributes.
 3. As a user I want to renew an Attestation on behalf of the Legal Entity in the Organizational Wallet, so that Attestations that are revoked, expired, or otherwise invalid can be renewed.
-4. As a user I want to request an Attestation to be issued to the Organizational Wallet on behalf of the Legal Entity from an Attestation Provider.
+
 5. As a user I want to be able to remove an Attestation from the Organizational Wallet, so that Attestations that are no longer needed can be removed.
 
 #### A.A Authorization
@@ -41,7 +43,10 @@ Some notes on the user stories:
 
 ### B Presenting Attestations
 
-1. As a user I want to present one or more Attestation(s) in the Organizational Wallet on behalf of the Legal Entity to a Relying Party, so that the Legal Entity and any of it's representatives can prove certain Attributes about the Legal Entity or it's representatives.
+#### B.1 Present Attestation
+
+> TODO: update to 'react to request for data'.
+As a user I want to present one or more Attestation(s) in the Organizational Wallet on behalf of the Legal Entity to a Relying Party, so that the Legal Entity and any of it's representatives can prove certain Attributes about the Legal Entity or it's representatives.
 
 #### B.A Authorization
 
@@ -84,37 +89,6 @@ Some notes on the user stories:
 #### F.A. Authorization
 
 1. As a user I want to limit which representatives of the Legal Entity can view the audit log of the Organizational Wallet, so that only authorized representatives can view the audit log.
-
-## Feature List
-
-| Feature                                                        | MoSCoW | Notes                                                                           |
-| -------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------- |
-| A.1 Receive Attestation                                        | M      |                                                                                 |
-| A.2 View Attestation                                           | M      |                                                                                 |
-| A.3 Renew Attestation                                          | C      | Could be handled by A.4 as well, however less integrated than a "renew" feature |
-| A.4 Request Attestation                                        | M      |                                                                                 |
-| A.A.1 Limit Receivers of Attestation                           | S      |                                                                                 |
-| A.A.2 Limit Viewers of Attestation                             | S      |                                                                                 |
-| A.A.3 Limit Removers of Attestation                            | S      |                                                                                 |
-| B.1 Present Attestation                                        | M      |                                                                                 |
-| B.A.1 Limit Presenters of Attestation                          | S      |                                                                                 |
-| B.A.2 Limit Presenters of specific Attestation Types           | S      |                                                                                 |
-| C.1 Issue Legal Entity Representative Attestation              | C      |                                                                                 |
-| C.2 Issue EAA Attestation                                      | M      |                                                                                 |
-| C.3 Configure Pre-defined Attestations                         | S      |                                                                                 |
-| C.4 Revoke Attestation                                         | M      |                                                                                 |
-| C.5 Configure Auto-renewal of Attestations                     | C      |                                                                                 |
-| C.A.1 Limit Issuers of Attestation                             | M      |                                                                                 |
-| C.A.2 Limit Issuers of specific Attestation Types              | S      |                                                                                 |
-| C.A.3 Limit Creators of Pre-defined Attestations               | C      |                                                                                 |
-| D.1 Verify Attestation                                         | M      |                                                                                 |
-| D.A.1 Limit Verification of Attestation                        | M      |                                                                                 |
-| D.A.2 Limit Verification of specific Attestation Type          | S      |                                                                                 |
-| D.A.3 Limit Creators of Pre-defined Attestation Verifications  | C      |                                                                                 |
-| E.2 Authenticate using SAML/SSO                                | M      |                                                                                 |
-| E.1 Authenticate using Legal Entity Representative Attestation | C      |                                                                                 |
-| F.1 View Audit Log                                             | M      |                                                                                 |
-| F.A.1 Limit Viewers of Audit Log                               | S      |                                                                                 |
 
 ### Use Case Specific User Stories
 

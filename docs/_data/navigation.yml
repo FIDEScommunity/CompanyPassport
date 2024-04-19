@@ -1,23 +1,44 @@
-- name: Scope
-  link: /scope/
-  dropdown:
-    - name: Use Case
-      link: /scope/use-case
-    - name: Credential Types
-      link: /scope/credential-types
-- name: Functional
+- name: Functional Specifictions
   link: /functional/
   dropdown:
-    - name: Requirements
-      link: /functional/requirements
-- name: Technical
-  link: /technical/
+    - name: Scope
+      link: /functional/scope
+    - name: Functional Components
+      link: /functional/components
+    - name: Use Case - Founding a Company
+      link: /functional/use-case-founding-company
+    - name: User Stories - Holder
+      link: /functional/stories-holder
+    - name: User Stories - Issuer
+      link: /functional/stories-issuer
+    - name: User Stories - Verifier
+      link: /functional/stories-verifier
+    - name: Organizational Wallet - Feature List
+      link: /functional/feature-list
+- name: Technical Specifications
+  link: /technical
   dropdown:
-    - name: Issuance
-      link: /technical/issuance/
-    - name: Verification
-      link: /technical/verification/
+    - name: Overview
+      link: /technical/overview
+    - name: Attestation Issuance
+      link: /technical/issuance
+    - name: Attestation Verification
+      link: /technical/verification
     - name: Revocation
-      link: /technical/status-list/
+      link: /technical/revocation
+    - name: Credential Formats
+      link: /technical/credential-types
+    - name: Identifiers
+      link: /technical/identifiers
+    - name: Key Management
+      link: /technical/key-management
+    - name: Cryptographic Algorithms
+      link: /technical/signature-type
+    - name: Authentication and Authorization
+      link: /technical/authhenication-authorization
+    - name: Trust Management
+      link: /technical/trust-mangement
+    - name: Security Considerations
+      link: /functional/security-considerations
 - name: Glossary
   link: /glossary/

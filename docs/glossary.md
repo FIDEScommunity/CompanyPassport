@@ -44,3 +44,14 @@ available the PGS can redirect to issuers of the verifiable credential.
 ## Definitions from the Architecture Reference Framework
 
 Throughout the documentation several [definitions from the EU Architecture Reference Framework v1.3.0]https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/arf.md#2-definitions) are used.
+
+- [PID]()
+- [Attestation]()
+
+## Legal PID
+
+> TOOD
+
+## Issuer Initiated Issuance
+
+## Wallet Initiated Issuance

@@ -1,0 +1,18 @@
+{
+	"name": "company-passport",
+	"version": "1.0.0",
+	"repository": "https://github.com/DutchBlockchainCoalition/CompanyPassport.git",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"next": "^14.2.2",
+		"nextra": "^2.13.4",
+		"nextra-theme-docs": "^2.13.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start"
+	}
+}

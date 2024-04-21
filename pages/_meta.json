@@ -1,0 +1,99 @@
+{
+	"*": {
+		"theme": {
+			"sidebar": false
+		}
+	},
+	"functional": {
+		"title": "Functional Specifications",
+		"type": "menu",
+		"items": {
+			"scope": {
+				"title": "Scope",
+				"href": "/functional/scope"
+			},
+			"components": {
+				"title": "Functional Components",
+				"href": "/functional/components"
+			},
+			"use-case-founding-company": {
+				"title": "Use Case - Founding a Company",
+				"href": "/functional/use-case-founding-company"
+			},
+			"stories-intro": {
+				"title": "User Stories - Intro",
+				"href": "/functional/stories"
+			},
+			"stories-holder": {
+				"title": "User Stories - Holder",
+				"href": "/functional/stories/stories-holder"
+			},
+			"stories-issuer": {
+				"title": "User Stories - Issuer",
+				"href": "/functional/stories/stories-issuer"
+			},
+			"stories-verifier": {
+				"title": "User Stories - Verifier",
+				"href": "/functional/stories/stories-verifier"
+			},
+			"feature-list": {
+				"title": "Organizational Wallet - Feature List",
+				"href": "/functional/feature-list"
+			}
+		}
+	},
+	"technical": {
+		"title": "Technical Specifications",
+		"type": "menu",
+		"items": {
+			"overview": {
+				"title": "Overview",
+				"href": "/technical/overview"
+			},
+			"issuance": {
+				"title": "Attestation Issuance",
+				"href": "/technical/issuance"
+			},
+			"verification": {
+				"title": "Attestation Verification",
+				"href": "/technical/verification"
+			},
+			"revocation": {
+				"title": "Revocation",
+				"href": "/technical/revocation"
+			},
+			"credential-types": {
+				"title": "Credential Formats",
+				"href": "/technical/credential-types"
+			},
+			"identifiers": {
+				"title": "Identifiers",
+				"href": "/technical/identifiers"
+			},
+			"key-management": {
+				"title": "Key Management",
+				"href": "/technical/key-management"
+			},
+			"signature-type": {
+				"title": "Cryptographic Algorithms",
+				"href": "/technical/signature-type"
+			},
+			"authhenication-authorization": {
+				"title": "Authentication and Authorization",
+				"href": "/technical/authhenication-authorization"
+			},
+			"trust-mangement": {
+				"title": "Trust Management",
+				"href": "/technical/trust-mangement"
+			},
+			"security-considerations": {
+				"title": "Security Considerations",
+				"href": "/functional/security-considerations"
+			}
+		}
+	},
+	"glossary": {
+		"title": "Glossary",
+		"type": "page"
+	}
+}

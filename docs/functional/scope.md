@@ -30,3 +30,8 @@ This initial use is the founding of a new “Besloten Vennootschap” (BV), a Du
 
 See the [Glossary](./glossary) for definitions of terms used in this document.
 
+## Out of Scope
+
+Because an organizational wallet is a very complex topic if you take into account all kinds of real-world scenarios, a lot of features and requirements for an organizational wallet are kept out of scope for now. Examples of topics specifically not addressed by the current version of the Company Passport are:
+- different levels of authorization within the organizational wallet. Every actor that has access to the organizational wallet has the same roles and is an Authorized Representative. 
+- Limited/shared authority. Every Authorized Representative has full power of attorney to act on behalf of the Legal Entity (possibly indirectly through other Legal Entities).

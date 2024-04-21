@@ -1,0 +1,39 @@
+---
+layout: page
+title: User Stories - Verifier
+hero_height: is-fullwidth
+---
+
+| User Story                                                                                       |
+| ------------------------------------------------------------------------------------------------ |
+| [V.1 Create Presentation Request Template](#v1-create-presentation-request-template)             |
+| [V.2 View Presentation Request Template](#v2-view-presentation-request-template)                 |
+| [V.3 Update Presentation Request Template](#v3-update-presentation-request-template)             |
+| [V.4 Delete Presentation Request Template](#v4-delete-presentation-request-template)             |
+| [V.5 Configure Trust Framework for Verification](#v5-configure-trust-framework-for-verification) |
+| [V.6 Request Presentation](#v6-request-presentation)                                             |
+
+
+### V.1 Create Presentation Request Template
+
+As an Authorized Representative I want to create a presentation request template for requesting a holder for (a subset of) attributes from one or multiple attestations, so that certain types of presentations can be requested by the Organizational Wallet.
+
+### V.2 View Presentation Request Template
+
+As an Authorized Representative I want to view a presentation template that can be requested by the Organizational Wallet.
+
+### V.3 Update Presentation Request Template
+
+As an Authorized Representative I want to update a presentation template that can be requested by the Organizational Wallet, so that the structure of a presentation request can change over time.
+
+### V.4 Delete Presentation Request Template
+
+As an Authorized Representative I want to delete a presentation template that can be request by the Organizational Wallet, so that presentation templates that are no longer needed can be deleted.
+
+### V.5 Configure Trust Framework for Verification
+
+As an Authorized Representative I want to configure which trust framework(s) must be used to verify specific Attestions presented by holders.
+
+### V.6 Request Presentation
+
+As an Authorized Representative I want to request the presentation of one or more Attestations from an external wallet on behalf of the Legal Entity, based on a presentation request template within the Organizational Wallet.

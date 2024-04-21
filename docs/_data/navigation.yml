@@ -1,4 +1,4 @@
-- name: Functional Specifictions
+- name: Functional Specifications
   link: /functional/
   dropdown:
     - name: Scope
@@ -7,12 +7,14 @@
       link: /functional/components
     - name: Use Case - Founding a Company
       link: /functional/use-case-founding-company
+    - name: User Stories - Intro
+      link: /functional/stories
     - name: User Stories - Holder
-      link: /functional/stories-holder
+      link: /functional/stories/stories-holder
     - name: User Stories - Issuer
-      link: /functional/stories-issuer
+      link: /functional/stories/stories-issuer
     - name: User Stories - Verifier
-      link: /functional/stories-verifier
+      link: /functional/stories/stories-verifier
     - name: Organizational Wallet - Feature List
       link: /functional/feature-list
 - name: Technical Specifications

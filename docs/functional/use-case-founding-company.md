@@ -18,8 +18,7 @@ Below an overview of verifiable credentials that are required during the foundin
 private limited liability company in the Netherlands (“BV”). This list may not be
 exhaustive. The Architecture WG will not define the details of the data models
 (schemes) for each of these credentials. A generic json schema file is assumed for
-each of the credentials. The Company Passport Trust Framework Working Group is
-provide data models for the various credentials.
+each of the credentials. The Company Passport Trust Framework Working Group task is to provide data models for the various credentials.
 
 ### Incorporation Deed
 
@@ -38,14 +37,13 @@ issuing a company registration number and formally registering the company.
 An identification number for legal entities and partnerships issued by the
 Dutch Chamber of Commerce to a legal entity. The RSIN is automatically
 provided to the Dutch Tax Office who uses the RSIN to generate other
-identifiers. Not all Dutch legal entities get an RSIN For instance sole
-proprietorship (“eenmanszaak”).
+identifiers. Not all Dutch legal entities get an RSIN (for example sole proprietorship (“eenmanszaak”)).
 
 ### VAT ID
 
 In Dutch “BTW ID”. The company applies for tax identification and VAT
 registration with the Tax Authority (Belastingdienst), which verifies the
-company&#39;s legal status and tax eligibility to ensure national tax regulation
+company's legal status and tax eligibility to ensure national tax regulation
 compliance.
 
 ### Bank Account Number
@@ -61,6 +59,14 @@ acting as legitimate proof of checks already done by other trusted parties.
 
 ```mermaid
 flowchart TD;
+  Person_A["Person A"]
+  Person_B["Person B"]
+  Person_C["Person C"]
+  Holding_A["Holding A"]
+  Holding_B["Holding B"]
+  Holding_C["Holding C"]
+  Operating_company["Operating Company"]
+  
   Person_A--> |100% shareholder| Holding_A;
   Person_B--> |100% shareholder| Holding_B;
   Person_C--> |100% shareholder| Holding_C;
@@ -72,6 +78,7 @@ flowchart TD;
 ## Scope Use Case
 
 ### Operating_company 
+
   - Has an organisational wallet
   - Has 3 independently authorised directors:
     - Holding A
@@ -81,29 +88,35 @@ flowchart TD;
      - 1/3 Holding A
      - 1/3 Holding B
      - 1/3 Holding C
+
 ### Holding A
   - Has an organisational wallet
   - Has 1 independently authorised director:
     - Person A
   - Has 1 100% shareholder
     - Person A
+
 ### Person A
   - Has a personal wallet
+
 ### Holding B
   - Has an organisational wallet
   - Has 1 independently authorised director:
     - Person B
   - Has 1 100% shareholder
     - Person B
+
 ### Person B
   - Does not have a personal wallet
   - Has an eIDAS High Digital Identity
+
 ### Holding C
   - Does not have an organizational wallet
   - Has 1 independently authorized director:
     - Person C
   - Has 1 100% shareholder
     - Person C
+
 ### Person C
   - Does not have a personal wallet
   - Has an eIDAS High Digital Identity
@@ -111,6 +124,7 @@ flowchart TD;
 ## Flow use case Horizon 1
 
 ### PID Issuance to Holding A
+
 ```mermaid
 sequenceDiagram
     participant Person A
@@ -147,6 +161,7 @@ sequenceDiagram
 ```
 
 ### PID Issuance to Operating Company
+
 ```mermaid
 sequenceDiagram
     participant Person A

@@ -1,21 +1,21 @@
----
-layout: page
-title: Company Passport
-subtitle: Specifications
-hero_height: is-medium
----
+import { Title } from "@components/Title";
+import { Kicker } from "@components/Kicker";
+import { Callout } from "@components/Callout"
 
-# Introduction
+<Kicker variant="accent">Introduction</Kicker>
+<Title size="large" variant="primary">Company Passport</Title>
 
 Company Passport is a trust framework that is evolved from an NL based innovation
 project with the Dutch Chamber of Commerce, Dutch Tax Office, ABN AMRO bank,
 the Royal Dutch Association of Civil-law Notaries (KNB) and the Dutch Blockchain
 Coalition.
+
 The trust framework is intended to facilitate use cases that require validated data
 related to legal entities. It uses SSI (Self Sovereign Identity) technologies and should
 align with the upcoming eIDAS 2 regulations. It is not a software solution but
 describes how compliant software solutions interact. These software solutions can
 be provided by any public or private third party.
+
 The initial focus will address NL based use cases. However, the objective is to
 assume a cross border, international context that could address all kind of different
 uses cases across country borders and different domains. Company Passport work
@@ -23,12 +23,19 @@ may provide valuable input to other trust frameworks and initiatives related to
 organizational digital identity. For instance the eIDAS/EUDI Wallet LSP’s, EBSI,
 Gaia-X, ESG reporting (Environmental, Social, Governance), EU DPP (Digital
 Product Passports), ESPR (Ecodesign for Sustainable Products Regulation), CSRD
-(Corporate Sustainability Reporting Directive) etc
+(Corporate Sustainability Reporting Directive) etc.
+
 As part of the overall Company Passport trust framework, the architectural and
 technical specifications need to be agreed upon and described. This work is carried
 out by the Company Passport Architecture Working Group and documented in this documentation
 site. You can view the source of this website on the [Company Passport Github](https://github.com/dutchBlockchainCoalition/CompanyPassport/).
 
-- [Functional Specifications](/functional)
+<Callout variant="primary">
+
+Get started using one of the following links:
+
+- [Functional Specifications](/functional/scope)
 - [Technical Specifications](/technical)
 - [Glossary](/glossary)
+
+</Callout>

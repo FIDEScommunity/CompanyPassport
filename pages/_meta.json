@@ -4,6 +4,13 @@
 			"sidebar": false
 		}
 	},
+	"index": {
+		"title": " ",
+		"display": "hidden",
+		"theme": {
+			"sidebar": false
+		}
+	},
 	"functional": {
 		"title": "Functional Specifications",
 		"type": "menu",
@@ -48,7 +55,7 @@
 		"items": {
 			"overview": {
 				"title": "Overview",
-				"href": "/technical/overview"
+				"href": "/technical"
 			},
 			"issuance": {
 				"title": "Attestation Issuance",

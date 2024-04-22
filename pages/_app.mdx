@@ -1,0 +1,11 @@
+import '../globals.css'
+import Script from 'next/script'
+import { workSans } from '../components/Font'
+
+export default function MyApp({ Component, pageProps }) {
+	return (
+		<main className={workSans.className}>
+			<Component {...pageProps} />
+		</main>
+	)
+}

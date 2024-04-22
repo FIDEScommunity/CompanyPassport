@@ -1,8 +1,12 @@
 ---
-layout: page
 title: Scope
 hero_height: is-fullwidth
 ---
+
+import { Title } from '@components/Title'
+import { Caption } from '@components/Caption'
+
+<Title size="large" variant="primary">Scope</Title>
 
 The CompanyPassport trust framework aims to address a range of use cases that can benefit from the exchange of verifiable “organnizational attestations”. From “know your business”  to security and privacy certifications, ESG reporting, Digital Product Passports (DPP) and international trade documents. However, to limit the scope, the CompanyPassport Architecture WG is focussing on an initial single use case.
 
@@ -26,9 +30,10 @@ This initial use is the founding of a new “Besloten Vennootschap” (BV), a Du
    The company approaches a bank to open a business account, necessary for financial transactions. The bank conducts KYC
    and AML checks to ensure financial regulation compliance before account creation.
 
-![sequence]({{'assets/use-case-seq.svg' | relative_url}})
+![Use case sequence diagram](/assets/use-case-sequence.svg)
+<Caption>Use case sequence diagram</Caption>
 
-See the [Glossary](./glossary) for definitions of terms used in this document.
+See the [Glossary](/glossary) for definitions of terms used in this document.
 
 ## Out of Scope
 

@@ -1,8 +1,7 @@
----
-layout: page
-title: Revocation
----
-# Statuslist
+import { Title } from '@components/Title'
+
+<Title size="large" variant="primary">StatusList</Title>
+
 
 A StatusList allows you to revoke or suspend credentials at an individual level. This is possible by incorporating some
 claims in every credential being issued, which has a descriptor pointing to the statuslist location (URI), as well
@@ -91,7 +90,7 @@ After every change of the statuslist a new version is published and thus signed 
 A Wallet or Relying Party verifies the (Q)EAAs provided to them as part of a presentation. Next to regular signature and
 schema checks it will also check the statusList if present
 
-![](../assets/StatusList2021-verification.svg)
+![Status list](/assets/StatusList2021-verification.svg)
 
 
 ## OAuth Status List

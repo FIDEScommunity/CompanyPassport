@@ -1,21 +1,15 @@
----
-layout: page
-title: High Level Functional Description
-hero_height: is-fullwidth
----
+import { Title } from '@components/Title'
+import { Caption } from '@components/Caption'
 
-# Introduction
+<Title size="large" variant="primary">Introduction</Title>
 
 Please note that the high-level component diagram provided below is only functional in nature and is meant to inform the
 reader mainly about the the credential APIs available for the 3 different roles (Issuer, Holder/Wallet and Relying
 Party). The diagram explains the components which are explained in more details in the rest of this document
 
-The diagram is generic in nature and not tied to any implementation
+The diagram is generic in nature and not tied to any implementation.
 
-![]({{'assets/High-level-roles-APIs.svg' | relative_url }})
-{{'assets/High-level-roles-APIs.svg' | relative_url}}
-
-[Plant UML source]({{ site.assets_src }}/High-level-roles-APIs.puml)
+![High level roles APIs](/assets/High-level-roles-api.svg)
 
 > Legend:
 >
@@ -55,7 +49,8 @@ mean that other frameworks or technical interactions would not be supported.
 
 ## Generic components needed in OID4VC/ARF
 
-[//]: # (![]&#40;../assets/OID4VCI.svg&#41;)
+![//](/assets/OID4VCI.svg)
+
 
 # (Q)EAA Issuance
 
@@ -77,7 +72,7 @@ The following assumptions have been made:
     - EBSI
 - A high security implementation profile is required (HAIP)
 
-![]({{'/assets/High%20Level%20QEAA%20issuance%20flow.drawio.svg' | relative_url}})
+![High level (Q)EAA issuance flow](/assets/high-level-qeaa-issuance-flow.drawio.svg)
 
 The steps involved:
 
@@ -112,7 +107,7 @@ The steps involved:
 
 # High level (Q)EAA verification flow
 
-![]({{'/assets/High%20Level%20QEAA%20verification%20flow.drawio.svg' | relative_url}})
+![High level (Q)EAA verification flow](/assets/high-level-qeaa-verification-flow.drawio.svg)
 
 1. **Client Registration (optional):** The relying party (RP) or client must register with the OpenID provider (OP).
    This involves obtaining an optional client ID and client secret to authenticate and interact with the OP. If not used

@@ -1,4 +1,7 @@
 @startuml
+
+skinparam backgroundColor transparent
+
 'Lets define some common colors globally
 !$C_PRT = "#118888"
 !$C_ARG = "#daa520"

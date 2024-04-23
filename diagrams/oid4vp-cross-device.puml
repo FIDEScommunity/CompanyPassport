@@ -1,6 +1,7 @@
 @startuml
 skinparam maxMessageSize 200
 skinparam wrapWidth 300
+skinparam backgroundColor transparent
 
 skinparam sequenceMessageAlign center
 skinparam BoxPadding 100

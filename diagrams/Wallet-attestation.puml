@@ -3,6 +3,7 @@ skinparam maxMessageSize 200
 skinparam wrapWidth 300
 skinparam sequenceMessageAlign center
 skinparam BoxPadding 100
+skinparam backgroundColor transparent
 
 autonumber "<b>(000)"
 

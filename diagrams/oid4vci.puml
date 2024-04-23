@@ -4,6 +4,7 @@
 
 skinparam legendBackgroundColor #white
 skinparam legendForegroundColor #black
+skinparam backgroundColor transparent
 
 
 title High level functional components per role

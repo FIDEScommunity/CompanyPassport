@@ -11,6 +11,10 @@ const config: DocsThemeConfig = {
 	docsRepositoryBase:
 		"https://github.com/DutchBlockchainCoalition/CompanyPassport",
 	darkMode: false,
+	nextThemes: {
+		forcedTheme: 'light',
+		defaultTheme: 'light',
+	},
 	feedback: {
 		content: null,
 	},

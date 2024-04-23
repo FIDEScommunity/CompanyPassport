@@ -1,0 +1,10 @@
+{
+    "index": "Introduction",
+    "components": "Components",
+    "use-cases": "Use Cases",
+    "user-stories": "User Stories",
+    "feature-list": "Feature List",
+    "to-revise": {
+        "display": "hidden"
+    }
+}

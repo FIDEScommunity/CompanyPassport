@@ -1,6 +1,8 @@
 import { Title } from '@components/Title'
 
-<Title size="large" variant="primary">Verification</Title>
+<Title size="large" variant="primary">
+  Verification
+</Title>
 
 ## OID4VP vp_token cross-device flow
 
@@ -35,39 +37,36 @@ import { Title } from '@components/Title'
     and thus Verifiable Presentation is expected
 
 header:
+
 ```json
 {
-"typ": "oauth-authz-req+jwt",
-"alg": "RS256",
-"kid": "did:example:123#1"
+  "typ": "oauth-authz-req+jwt",
+  "alg": "RS256",
+  "kid": "did:example:123#1"
 }
 ```
+
 body/payload:
+
 ```json
 {
-   "client_id": "did:example:123",
-   "client_id_scheme": "did",
-   "response_types": "vp_token",
-   "redirect_uri": "https://relying-party.acme.org/callback",
-   "nonce":"n-0S6_WzA2Mj",
-   "presentation_definition": "..see PE chapter for examples..",
-   "client_metadata": {
-      "vp_formats": {
-         "jwt_vp_json": {
-            "alg": [
-               "ES256",
-               "ES256K"
-            ]
-         },
-         "mso_mdoc": {
-            "proof_type": [
-               "ES256"
-            ]
-         }
+  "client_id": "did:example:123",
+  "client_id_scheme": "did",
+  "response_types": "vp_token",
+  "redirect_uri": "https://relying-party.acme.org/callback",
+  "nonce": "n-0S6_WzA2Mj",
+  "presentation_definition": "..see PE chapter for examples..",
+  "client_metadata": {
+    "vp_formats": {
+      "jwt_vp_json": {
+        "alg": ["ES256", "ES256K"]
+      },
+      "mso_mdoc": {
+        "proof_type": ["ES256"]
       }
-   }
+    }
+  }
 }
-
 ```
 
 See also: [Presentation Exchange explanation](./presentation-exchange)
@@ -90,10 +89,10 @@ See also: [Presentation Exchange explanation](./presentation-exchange)
     consent to present the (Q)EAA.
 23. **JSON-LD W3C (Q)EAA** The wallet generates a W3C Verifiable Presentation containing one or more proofs using
     wallet/device private key(s)
-24. **(SD-JWT (Q)EAA)** The Wallet generates a KB-JWT by signing over nonce and audience with *device private keyv*
+24. **(SD-JWT (Q)EAA)** The Wallet generates a KB-JWT by signing over nonce and audience with _device private keyv_
 25. **(SD-JWT (Q)EAA)** The Wallet creates the presentation according to presentation_definition by cutting out the
     unnecessary Disclosures and appending the KB-JWT
-26. **(Mdoc (Q)EAA)** The Wallet generates an Mdoc deviceAuth by signing the SessionTranscript with *device private key*
+26. **(Mdoc (Q)EAA)** The Wallet generates an Mdoc deviceAuth by signing the SessionTranscript with _device private key_
 27. **(Mdoc (Q)EAA)** The Wallet creates the presentation according to presentation_definition by cutting out the
     unnecessary Releases assembling the issuerAuth with deviceAuth
 28. **JWT W3C VP** The wallet generates a W3C VCDM 1.1 JWT encoded Verifiable Presentation containing one or more proofs
@@ -103,7 +102,7 @@ See also: [Presentation Exchange explanation](./presentation-exchange)
     contained in the VP.
 31. The wallet sends the VP token and presentation submission to the RP (encrypted to the RP's ephemeral public key, not
     yet supported).
-32. The RP optionally decrypts the Authorization Response with its *ephemeral public key* created during the
+32. The RP optionally decrypts the Authorization Response with its _ephemeral public key_ created during the
     Authorization Request.
 33. The RP matches the browser session with the state parameter.
 34. The RP verifies the content of the vp_token. verifies its signatures, including these of credentials contained in
@@ -116,5 +115,3 @@ See also: [Presentation Exchange explanation](./presentation-exchange)
 39. matches this with the verification result.
 40. Returns the result to the browser or RS
 41. The browser continues the UX flow.
-
-

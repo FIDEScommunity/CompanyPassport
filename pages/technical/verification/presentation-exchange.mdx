@@ -1,6 +1,8 @@
 import { Title } from '@components/Title'
 
-<Title size="large" variant="primary">Presentation Exchange</Title>
+<Title size="large" variant="primary">
+  Presentation Exchange
+</Title>
 
 Whenever the `response_type` of the `Request Object` contains the value `vp_token`, `code` and
 a `presentation_definition` is present, the OP/Wallet is expected to return a so called `VP Token`, meaning a Verifiable
@@ -69,6 +71,7 @@ descriptors
 
 The below example, expects a JWT VP signed using `ES256` with a single JWT VC signed using either `ES256` or `ES256K`.
 It also expect the type to be `IDCredential` exactly and requires a schema from 2 different locations.
+
 ```json
 {
     "id": "example_jwt_vc, a unique ID value for the whole definition",
@@ -181,6 +184,7 @@ ids and the JSONPaths of the (Q)EAAs in the Presentation. This ensures the RP ca
 ambiguity.
 
 Example presentation submission:
+
 ```json
 {
     "id": "Presentation example 1", <-- Unique value in scope of the holder/wallet

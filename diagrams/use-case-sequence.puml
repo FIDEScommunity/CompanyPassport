@@ -1,5 +1,6 @@
 @startuml
 scale max 450 height
+skinparam backgroundColor transparent
 
 actor Actor as "Entrepreneur[]"
 participant Notary as "Notary"

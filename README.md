@@ -18,12 +18,14 @@ bundle install --gemfile Gemfile.dev
 ```
 
 #### Running a local server
+
 Once Jekyll is installed, you can run a local development server to preview the site by running the following command:
 
 ```sh
 # in <ROOT>/docs
-bundle exec --gemfile Gemfile.dev jekyll serve 
+bundle exec --gemfile Gemfile.dev jekyll serve
 ```
+
 > **TIP:** If you use the Live Reload plugin in your editor, you can connect to the server by adding the `--livereload` parameter.
 
 ### Structure
@@ -31,6 +33,7 @@ bundle exec --gemfile Gemfile.dev jekyll serve
 When the site is deployed, the url routing is generated based on the directory structure of the `/docs` directory.
 
 Some examples:
+
 - The `/docs/index.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport`
 - The `/docs/technical/index.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport/technical`
 - The `/docs/technical/status-list.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport/technical/status-list`
@@ -44,7 +47,6 @@ To create a new page, simply create a new markdown file in the desired location.
 layout: page
 title: <the title of your page>
 ---
-
 For more advanced configuration options, please see the frontmatter options for [Jekyll](https://jekyllrb.com/docs/front-matter/) and the [Bulma Clean Theme documentation].
 ```
 
@@ -59,6 +61,7 @@ Images and other static assets that you want include into your documentation sho
 Although most of the documentation can be written using normal markdown, the format for linking is a little different. Using this format ensures that the file paths are set correctly during local development, as well as when the site is being deployed.
 
 #### Internal site links
+
 Let's say you want to include an image located in the `/docs/assets/my_image.png` directory. Normally, you would do that by adding `![image name](relative-path-to-assets-dir)` to your markdown file. Instead of passing a relative file path, we can specify a relative path (with the `/docs` directory as the root) and let Jekyll figure out the rest. So instead, you include the image by writing `![image name]({{'/assets/my_image.png' | relative_url}})`. By adding the `relative_path` filter, Jekyll will prefix the file path with the correct base url.
 
 > **NOTE:** This formatting rule does not only apply to images, but to all internal site links.
@@ -66,6 +69,7 @@ Let's say you want to include an image located in the `/docs/assets/my_image.png
 #### Source code links
 
 If you want to link to a source file within this repository, you can do so by using the following custom variables:
+
 - `{site.github_repo}` - will be substituted with `https://github.com/DutchBlockchainCoalition/CompanyPassport`
 - `{site.assets_src}` - will be substituted with `https://github.com/DutchBlockchainCoalition/CompanyPassport/blob/main/docs/assets`
 
@@ -76,8 +80,9 @@ So let's say you want to link to a PlantUML source file located at `/docs/assets
 PlantUML is a scripting language for creating software diagrams by writing code. This has various benefits, including simplified version management. Most markdown renderers have no native support for rendering PlantUML diagrams and rendering a diagram therefore usually requires the author to manually export the image. This can become quite tedious and lead to version mismatches between the diagram source code and rendered image. Luckily, GitHub Actions and Jekyll can help us out.
 
 The site's current configuration allows you to add PlantUML diagrams in two ways:
-  1. By inlining the diagram source code within your markdown file
-  2. By defining and referencing a PlantUML source file
+
+1. By inlining the diagram source code within your markdown file
+2. By defining and referencing a PlantUML source file
 
 #### **Option 1:** Inline
 

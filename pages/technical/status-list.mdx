@@ -1,7 +1,8 @@
 import { Title } from '@components/Title'
 
-<Title size="large" variant="primary">StatusList</Title>
-
+<Title size="large" variant="primary">
+  StatusList
+</Title>
 
 A StatusList allows you to revoke or suspend credentials at an individual level. This is possible by incorporating some
 claims in every credential being issued, which has a descriptor pointing to the statuslist location (URI), as well
@@ -20,6 +21,7 @@ Our solution can automatically assign these statuslist entries when issuing a cr
 revoking a credential is done using a separate REST API
 
 ## StatusList 2021
+
 Spec: https://www.w3.org/TR/2023/WD-vc-status-list-20230427/
 
 StatusList2021 is a pretty popular implementation in use today, however it has been superseded
@@ -65,6 +67,7 @@ The encodeList is the bitstring, which is gzip compressed and base64url encoded 
 The whole statusList is represented as Verifiable Credentials, so that Relying Parties can check/verify that the
 statusList is signed by the issuer of a verifiable credential.
 After every change of the statuslist a new version is published and thus signed by the issuer.
+
 ```json
 {
   "@context": [
@@ -92,8 +95,8 @@ schema checks it will also check the statusList if present
 
 ![Status list](/assets/StatusList2021-verification.svg)
 
-
 ## OAuth Status List
+
 spec: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-status-list-00
 
 The OAuth Status List has it roots in JWT/CWT credentials and is more suited for OAuth and thus OpenID scenario's. It
@@ -135,11 +138,12 @@ be downloaded. Contrary to the StatusList2021 statuslist it thus isn't a VC itse
 Every credential issued using this statusList would have a URI pointing to this list.
 The `lst` is the bitstring, which is gzip compressed and base64url encoded to save privacy.
 After every change of the statuslist a new version is published and thus signed by the issuer.
+
 ```json
 {
   "alg": "ES256", <-- The algorithm used
   "kid": "12", <-- The key identifier of the issuer (used to sign the JWT)
-  "typ": "statuslist+jwt" <-- Indicated this is a statuslist in JWT format 
+  "typ": "statuslist+jwt" <-- Indicated this is a statuslist in JWT format
 }
 .
 {
@@ -153,7 +157,5 @@ After every change of the statuslist a new version is published and thus signed 
   "sub": "https://example.com/statuslists/1" <!-- The status list identifier itself. Must match the `uri` value in the `status` object of the JWT VC
 }
 ```
-
-
 
 **TODO: Explain other StatusLists implementations**

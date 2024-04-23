@@ -1,33 +1,41 @@
 import { Kicker } from '@components/Kicker'
 import { Title } from '@components/Title'
 
-<Title size="large" variant="primary">Organizational Wallet - Feature List</Title>
+<Kicker variant="accent">Organizational Wallet</Kicker>
+<Title size="large" variant="primary">
+  Feature List
+</Title>
 
-| Feature                                                        | MoSCoW | Notes                                                                           |
-| -------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------- |
-| A.1 Receive Attestation                                        | M      |                                                                                 |
-| A.2 View Attestation                                           | M      |                                                                                 |
-| A.3 Renew Attestation                                          | C      | Could be handled by A.4 as well, however less integrated than a "renew" feature |
-| A.4 Request Attestation                                        | M      |                                                                                 |
-| A.A.1 Limit Receivers of Attestation                           | S      |                                                                                 |
-| A.A.2 Limit Viewers of Attestation                             | S      |                                                                                 |
-| A.A.3 Limit Removers of Attestation                            | S      |                                                                                 |
-| B.1 Present Attestation                                        | M      |                                                                                 |
-| B.A.1 Limit Presenters of Attestation                          | S      |                                                                                 |
-| B.A.2 Limit Presenters of specific Attestation Types           | S      |                                                                                 |
-| C.1 Issue Legal Entity Representative Attestation              | C      |                                                                                 |
-| C.2 Issue EAA Attestation                                      | M      |                                                                                 |
-| C.3 Configure Pre-defined Attestations                         | S      |                                                                                 |
-| C.4 Revoke Attestation                                         | M      |                                                                                 |
-| C.5 Configure Auto-renewal of Attestations                     | C      |                                                                                 |
-| C.A.1 Limit Issuers of Attestation                             | M      |                                                                                 |
-| C.A.2 Limit Issuers of specific Attestation Types              | S      |                                                                                 |
-| C.A.3 Limit Creators of Pre-defined Attestations               | C      |                                                                                 |
-| D.1 Verify Attestation                                         | M      |                                                                                 |
-| D.A.1 Limit Verification of Attestation                        | M      |                                                                                 |
-| D.A.2 Limit Verification of specific Attestation Type          | S      |                                                                                 |
-| D.A.3 Limit Creators of Pre-defined Attestation Verifications  | C      |                                                                                 |
-| E.2 Authenticate using SAML/SSO                                | M      |                                                                                 |
-| E.1 Authenticate using Legal Entity Representative Attestation | C      |                                                                                 |
-| F.1 View Audit Log                                             | M      |                                                                                 |
-| F.A.1 Limit Viewers of Audit Log                               | S      |                                                                                 |
+| Feature                                                                                                                                      | MoSCoW | Notes |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ----- |
+| [G.1 View Audit Log](#g1-view-audit-log)                                                                                                     |
+| [G.2 View Audit Log for Attestation](#g2-view-audit-log-for-attestation)                                                                     |
+| [G.3 Authenticate using SAML/SSO](#g3-authenticate-using-samlsso)                                                                            |
+| [G.4 Access Wallet - Web Portal](#g4-access-wallet---web-portal)                                                                             |
+| [G.5 Store Contact](#g5-store-contact)                                                                                                       |
+| [G.6 Initializing Organizational Wallet](#g6-initializing-organizational-wallet)                                                             |
+| [G.7 Configure and View Organizational Identifier](#g7-configure-and-view-organizational-identifier)                                         |
+| [H.1 Receive Attestation](#h1-receive-attestation)                                                                                           |
+| [H.2 Request Attestation](#h2-request-attestation)                                                                                           |
+| [H.3 View Attestation in Organizational Wallet](#h3-view-attestation-in-organizational-wallet)                                               |
+| [H.4 Renew Attestion in Organizational Wallet](#h4-renew-attestion-in-organizational-wallet)                                                 |
+| [H.5 Delete Attestation in Organizational Wallet](#h5-delete-attestation-in-organizational-wallet)                                           |
+| [H.6 Auto Renew Attestion in Organizational Wallet](#h6-auto-renew-attestion-in-organizational-wallet)                                       |
+| [H.7 Present Attestations to Relying Party](#h7-present-attestations-to-relying-party)                                                       |
+| [H.8 Configure Trust Frameworks](#h8-configure-trust-frameworks)                                                                             |
+| [H.9 Verify Trust Framework of Attenstation Provider or Relying Party](#h9-verify-trust-framework-of-attenstation-provider-or-relying-party) |
+| [I.1 Create Attestion Template](#i1-create-attestion-template)                                                                               |
+| [I.2 View Attestion Template](#i2-view-attestion-template)                                                                                   |
+| [I.3 Update Attestation Template](#i3-update-attestation-template)                                                                           |
+| [I.4 Delete Attestion Template](#i4-delete-attestion-template)                                                                               |
+| [I.5 Issue Attestation](#i5-issue-attestation)                                                                                               |
+| [I.6 Revoke Attestation](#i6-revoke-attestation)                                                                                             |
+| [I.7 Auto Renewal of Attestation](#i7-auto-renewal-of-attestation)                                                                           |
+| [I.8 Rotate Issuer Key](#i8-rotate-issuer-key)                                                                                               |
+| [I.9 Configure Trust Framework for Attestation](#i9-configure-trust-framework-for-attestation)                                               |
+| [V.1 Create Presentation Request Template](#v1-create-presentation-request-template)                                                         |
+| [V.2 View Presentation Request Template](#v2-view-presentation-request-template)                                                             |
+| [V.3 Update Presentation Request Template](#v3-update-presentation-request-template)                                                         |
+| [V.4 Delete Presentation Request Template](#v4-delete-presentation-request-template)                                                         |
+| [V.5 Configure Trust Framework for Verification](#v5-configure-trust-framework-for-verification)                                             |
+| [V.6 Request Presentation](#v6-request-presentation)                                                                                         |

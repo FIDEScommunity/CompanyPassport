@@ -1,8 +1,9 @@
 {
-    "*": {
-        "theme": {
-            "sidebar": false
-        }
-    },
-    "index": "Introduction"
+    "index": "Introduction",
+    "issuance": "Issuance",
+    "verification": "Verification",
+    "status-list": "Status List",
+    "to-revise": {
+        "display": "hidden"
+    }
 }

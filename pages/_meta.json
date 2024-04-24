@@ -1,7 +1,7 @@
 {
   "index": {
-    "title": " ",
-    "display": "hidden",
+    "title": "Home",
+    "type": "page",
     "theme": {
       "sidebar": false
     }

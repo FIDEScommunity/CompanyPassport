@@ -10,34 +10,3 @@ import { Caption } from '@components/Caption'
 The CompanyPassport trust framework aims to address a range of use cases that can benefit from the exchange of verifiable “organnizational attestations”. From “know your business” to security and privacy certifications, ESG reporting, Digital Product Passports (DPP) and international trade documents. However, to limit the scope, the CompanyPassport Architecture WG is focussing on an initial single use case.
 
 This initial use is the founding of a new “Besloten Vennootschap” (BV), a Dutch private limited liability company (Ltd.). This use case acts as an example of a process that involves the exchange of company data between a range of stakeholders, the company and its founders and employees. However, the objective is to provide a generic trust framework and architecture that can also be applied to other use cases and with different credentials and stakeholders. During the course of the project additional use cases may be added.
-
-## Example interactions
-
-1. **Notary Verification & Incorporation Deed**:
-   Company representatives present statutes to a notary, who verifies stakeholder identities and statutes legality, then
-   **issues the deed of incorporation**, formalizing company establishment.
-
-2. **Chamber of Commerce Registration**:
-   The company submits incorporation documents to the Chamber of Commerce (KVK), which verifies and approves these
-   documents, issuing a company registration number and formally registering the company.
-
-3. **Tax Registration**:
-   The company applies for tax identification and VAT registration with the Tax Authority (Belastingdienst), which
-   verifies the company's legal status and tax eligibility to ensure national tax regulation compliance.
-
-4. **Bank Account Opening**:
-   The company approaches a bank to open a business account, necessary for financial transactions. The bank conducts KYC
-   and AML checks to ensure financial regulation compliance before account creation.
-
-![Use case sequence diagram](/assets/use-case-sequence.svg)
-
-<Caption>Use case sequence diagram</Caption>
-
-See the [Glossary](/glossary) for definitions of terms used in this document.
-
-## Out of Scope
-
-Because an organizational wallet is a very complex topic if you take into account all kinds of real-world scenarios, a lot of features and requirements for an organizational wallet are kept out of scope for now. Examples of topics specifically not addressed by the current version of the Company Passport are:
-
-- different levels of authorization within the organizational wallet. Every actor that has access to the organizational wallet has the same roles and is an Authorized Representative.
-- Limited/shared authority. Every Authorized Representative has full power of attorney to act on behalf of the Legal Entity (possibly indirectly through other Legal Entities).

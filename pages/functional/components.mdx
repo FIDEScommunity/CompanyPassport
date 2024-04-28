@@ -6,23 +6,23 @@ import { Callout } from '@components/Callout'
   Components
 </Title>
 
-The CompanyPassport trust framework is not a software solution itself but it describes how different “CompanyPassport compliant solutions” can interact in various use cases. In below diagram we summarize the main components that play a role in the CompanyPassport use cases. Two of the main components are the personal wallet and organizational wallet. In the eIDAS 2.0 work there already is a lot of focus on the personal wallet which will be adopted by CompanyPassport. Less is described about wallets for organizations (legal entities). Therefore this will be addressed in more detail by CompanyPassport. Below diagram is generic and can be applied to all kinds of use cases, including the initial use case of founding a company.
+The CompanyPassport trust framework is not a software solution itself but it describes how different “CompanyPassport compliant solutions” can interact in various use cases. In below diagram we summarize the main components that play a role in the CompanyPassport use cases. Two of the main components are the personal wallet and organisational wallet. In the eIDAS 2.0 work there already is a lot of focus on the personal wallet which will be adopted by CompanyPassport. Less is described about wallets for organizations (legal entities). Therefore this will be addressed in more detail by CompanyPassport. Below diagram is generic and can be applied to all kinds of use cases, including the initial use case of founding a company.
 
 ![Components Diagram](/assets/main-components.png)
 
 <Caption>Components of CompanyPassport ecosystem.</Caption>
 
-## Organizational Wallet
+## Organisational Wallet
 
-CompanyPassport considers an Organizational Wallet a software solution that combines three roles that are related to the use of Electronic Attestations of Attributes (digital credentials): Issuer, Holder and Verifier (Relying Party). Important to note is that we describe the Organizational Wallet as a combined solution. An application that can be used by multiple persons within an organization. We assume however, that the functionalities of an Organizational Wallet can also be fulfilled by separate API based components.
-The holder functionality provides features for requesting, receiving, storing and sharing Organizational (Q)EAA’s. This are attestations about the organization, not about natural persons. Several examples of Organizational (Q)EAA’s are listed in a separate section. The CompanPassport consortium will select a number of these organizational (Q)EAA’s that can be used in CompanyPasssport use cases.
+CompanyPassport considers an Organisational Wallet a software solution that combines three roles that are related to the use of Electronic Attestations of Attributes (digital credentials): Issuer, Holder and Verifier (Relying Party). Important to note is that we describe the Organisational Wallet as a combined solution. An application that can be used by multiple persons within an organization. We assume however, that the functionalities of an Organisational Wallet can also be fulfilled by separate API based components.
+The holder functionality provides features for requesting, receiving, storing and sharing Organisational (Q)EAA’s. This are attestations about the organization, not about natural persons. Several examples of Organisational (Q)EAA’s are listed in a separate section. The CompanPassport consortium will select a number of these organisational (Q)EAA’s that can be used in CompanyPasssport use cases.
 The issuer functionality allows any organizations to issue EAA’s to be used in various use cases. Either as a “trusted issuer” or for self-attested EAA’s.
-The verifier functionality allows any organization to act as a relying party. This means that organizations can for instance request personal or organizational (Q)EAA’s in their existing web portals, digital forms and/or mobile apps.
+The verifier functionality allows any organization to act as a relying party. This means that organizations can for instance request personal or organisational (Q)EAA’s in their existing web portals, digital forms and/or mobile apps.
 The user stories and feature list describe all above functionality in more detail.
 
 ## Personal Wallet
 
-CompanyPassport considers a Personal Wallet a software solution to request, store and share (Q)EAA’s that say something about natural persons. For instance the eIDAS 2.0 PID (Personal Identification Data) and mDL (Mobile Driving License). This Personal Wallet may also include work related (Q)EAA’s. For instance mandates, employee badges or professional certificates. The Personal Wallet and (Q)EAA’s may also be used for accessing Organizational Wallets (other IAM methods may also be applied).
+CompanyPassport considers a Personal Wallet a software solution to request, store and share (Q)EAA’s that say something about natural persons. For instance the eIDAS 2.0 PID (Personal Identification Data) and mDL (Mobile Driving License). This Personal Wallet may also include work related (Q)EAA’s. For instance mandates, employee badges or professional certificates. The Personal Wallet and (Q)EAA’s may also be used for accessing Organisational Wallets (other IAM methods may also be applied).
 An list of Personal (Q)EAA’s examples is can be found in a separate section. The CompanPassport consortium will select a number of these (Q)EAA’s that can be used in CompanyPasssport use cases.
 
 ## Verifiable Data Registry
@@ -31,15 +31,15 @@ Electronic Attributes of Attestation (digital credentials) always rely on partic
 
 ## Other Systems
 
-The issuer, holder and verifier functionality of Organizational Wallets will have all kinds of integrations with others systems. As mentioned above, the features of Organizational Wallets are considered a set of loosely coupled services that may even be fully integrated into existing cloud or on premise products like ERP, CRM and or Identity and Access Management (IAM) solutions. CompanyPassport is not prescribing any particular solutions but only the specifications for making a solution CompanyPassport compliant.
+The issuer, holder and verifier functionality of Organisational Wallets will have all kinds of integrations with others systems. As mentioned above, the features of Organisational Wallets are considered a set of loosely coupled services that may even be fully integrated into existing cloud or on premise products like ERP, CRM and or Identity and Access Management (IAM) solutions. CompanyPassport is not prescribing any particular solutions but only the specifications for making a solution CompanyPassport compliant.
 
-## Organizational Attestations
+## Organisational Attestations
 
-Organizational EAA’s (Electronic Attestation of Attributes) are digital credentials that attest (say) something about the organzation (not about individual natural persons). If the attestation is issued by a trusted issuer this can add trust in digital processes. Below sections provide an list of examples of Organizational (Q)EAA’s.
+Organisational EAA’s (Electronic Attestation of Attributes) are digital credentials that attest (say) something about the organzation (not about individual natural persons). If the attestation is issued by a trusted issuer this can add trust in digital processes. Below sections provide an list of examples of Organisational (Q)EAA’s.
 
 <Callout variant="primary">
 
-<Title size="normal">Organizational Identifiers</Title>
+<Title size="normal">Organisational Identifiers</Title>
 
 - KvK Number
 - RSIN

@@ -2,7 +2,7 @@
 scale max 450 height
 skinparam backgroundColor transparent
 
-actor Actor as "Entrepreneur[]"
+actor Actor as "Entrepreneur"
 participant Notary as "Notary"
 participant KvK as "Chamber of Commerce"
 participant TaxAuthority as "Tax Authority"
@@ -12,20 +12,18 @@ participant LegalAdvisor as "Legal Advisor/Accountant"
 == Deed of Incorporation ==
 Notary -> Actor: Verify identities and legality
 Actor <-> Notary: Execution of the deed of incorporation
-note right
-    2x issuance? Multi-sig?
-end note
-== Registration at KvK ==
+Notary -> Actor: Issue "Incorporation Deed" Attestation
+== Registration at Dutch Chamber of Commerce ==
 KvK -> Actor: Verify incorporation documents
-KvK -> Actor: Issue company registration number
+KvK -> Actor: Issue "Chamber of Commerce Registration" Attestation
 
 == Tax Registration ==
-TaxAuthority -> Actor: Register for tax identification
-TaxAuthority -> Actor: Issue tax ID, VAT, ...
+Actor -> TaxAuthority: Register for tax identification
+TaxAuthority -> Actor: Issue "VAT ID" Attesation
 
 == Opening a Bank Account ==
 Actor -> Bank: Request to open a business account
-Bank -> Actor: Verify KYC and AML creds
-Bank -> Actor: Issue bank account number
+Bank -> Actor: Verify KYC and AML credentials
+Bank -> Actor: Issue "Bank Account" Attestation
 
 @enduml

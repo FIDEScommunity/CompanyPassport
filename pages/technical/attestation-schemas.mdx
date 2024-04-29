@@ -1,0 +1,59 @@
+import { Title } from '@components/Title'
+import { Callout } from '@components/Callout'
+
+<Title size="large" variant="primary">
+  Attestation Schemas
+</Title>
+
+<Callout variant="primary">
+
+This page will list specific schemas defining the structure of Attestations for the Founding a Company use case.
+
+</Callout>
+
+## Example Chamber of Commerce Registration
+
+This is an example of a JSON schema
+
+### Example Payload
+
+```json
+{
+  "vct": "https://attestations.kvk.nl/ChamberOfCommerceRegistration",
+  "kvk_number": "12345678",
+  "legal_entity": {
+    "rsin": "12345678"
+  }
+}
+```
+
+### JSON Schema
+
+```jsonc
+{
+  "type": "object",
+  "title": "Chamber of Commerce Registration",
+  "description": "Attestation issued by the Chamber of Commerce attesting the registration of a Legal Entity at the Dutch Chamber of Commerce (KVK)",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "https://attestations.kvk.nl/ChamberOfCommerceRegistration",
+    },
+    "kvk_number": {
+      "type": "string",
+    },
+    "legal_entity": {
+      "type": "object",
+      "properties": {
+        "rsin": {
+          "type": "string",
+        },
+        // other properties related to legal entity
+      },
+      "required": ["rsin"],
+    },
+    // other properties related to chamber of commerce registartion
+  },
+  "required": ["vct", "kvk_number", "legal_entity"],
+}
+```

@@ -1,8 +1,15 @@
 {
     "index": "Introduction",
-    "issuance": "Issuance",
-    "verification": "Verification",
-    "status-list": "Status List",
+    "issuance": "Attestation Issuance",
+    "verification": "Attestation Verification",
+    "revocation": "Attestation Revocation",
+    "attestation-formats": "Attestation Formats",
+    "identifiers": "Identifiers",
+    "key-management": "Key Management",
+    "cryptographic-algorithms": "Cryptographic Algorithms",
+    "authentication-authorisation": "Authentication and Authorisation",
+    "trust-management": "Trust Management",
+    "security-considerations": "Security Considerations",
     "to-revise": {
         "display": "hidden"
     }

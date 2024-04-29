@@ -1,0 +1,62 @@
+import { Title } from '@components/Title'
+
+<Title size="large" variant="primary">
+  Requirements
+</Title>
+
+This page list the requirements for the first version of the Organisational Wallet. Entries starting with a letter (`G`, `H`, `I`, `V`, `F`) refer to defined user stories (see [Overview](user-stories)). All other entries are not based on currently defined user stories, but indicate potential requirements for future versions of the Organisational Wallet.
+
+## Organisational Wallet
+
+| Requirement                                                                                                                                                            | MoSCoW | Notes |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ----- |
+| [G.1 Initialising Organisational Wallet](user-stories/general#g1-initialising-organisational-wallet)                                                                   | M      |       |
+| [G.2 View Audit Log](user-stories/general#g2-view-audit-log)                                                                                                           | S      |       |
+| [G.3 View Audit Log for Attestation](user-stories/general#g3-view-audit-log-for-attestation)                                                                           | S      |       |
+| [G.4 Authenticate using SAML/SSO](user-stories/general#g4-authenticate-using-samlsso)                                                                                  | M      |       |
+| [G.5 Access Wallet - Web Portal](user-stories/general#g5-access-wallet---web-portal)                                                                                   | M      |       |
+| [G.6 Store Contact](user-stories/general#g6-store-contact)                                                                                                             | S      |       |
+| [G.7 Configure and View Organisational Identifier](user-stories/general#g7-configure-and-view-organisational-identifier)                                               | M      |       |
+| [G.8 Setting Access Rights](user-stories/general#g8-setting-access-rights)                                                                                             | S      |       |
+| [H.1 Receive Attestation](user-stories/holder#h1-receive-attestation)                                                                                                  | M      |       |
+| [H.2 Request Attestation](user-stories/holder#h2-request-attestation)                                                                                                  | M      |       |
+| [H.3 View Attestation in Organisational Wallet](user-stories/holder#h3-view-attestation-in-organisational-wallet)                                                      | M      |       |
+| [H.4 Renew Attestion in Organisational Wallet](user-stories/holder#h4-renew-attestion-in-organisational-wallet)                                                        | C      |       |
+| [H.5 Delete Attestation in Organisational Wallet](user-stories/holder#h5-delete-attestation-in-organisational-wallet)                                                  | M      |       |
+| [H.6 Auto Renew Attestion in Organisational Wallet](user-stories/holder#h6-auto-renew-attestion-in-organisational-wallet)                                              | C      |       |
+| [H.7 Present Attestations to Relying Party](user-stories/holder#h7-present-attestations-to-relying-party)                                                              | M      |       |
+| [H.8 Configure Trust Frameworks](user-stories/holder#h8-configure-trust-frameworks)                                                                                    | M      |       |
+| [H.9 Verify Trust Framework of Attenstation Provider or Relying Party](user-stories/holder#h9-verify-trust-framework-of-attenstation-provider-or-relying-party)        | M      |       |
+| [H.10 Receive Wallet Attestation](user-stories/holder#h10-receive-wallet-attestation)                                                                                  | M      |       |
+| [H.11 Present Wallet Attestation when receiving Attestation](user-stories/holder#h11-present-wallet-attestation-when-receiving-attestation)                            | M      |       |
+| [H.12 Attestation Duplication Preventation](user-stories/holder#h12-attestation-duplication-preventation)                                                              | M      |       |
+| [I.1 Create Attestion Template](user-stories/issuer#i1-create-attestion-template)                                                                                      | M      |       |
+| [I.2 View Attestion Template](user-stories/issuer#i2-view-attestion-template)                                                                                          | M      |       |
+| [I.3 Update Attestation Template](user-stories/issuer#i3-update-attestation-template)                                                                                  | M      |       |
+| [I.4 Delete Attestion Template](user-stories/issuer#i4-delete-attestion-template)                                                                                      | M      |       |
+| [I.5 Issue Attestation](user-stories/issuer#i5-issue-attestation)                                                                                                      | M      |       |
+| [I.6 Revoke Attestation](user-stories/issuer#i6-revoke-attestation)                                                                                                    | M      |       |
+| [I.7 Auto Renewal of Attestation](user-stories/issuer#i7-auto-renewal-of-attestation)                                                                                  | C      |       |
+| [I.8 Rotate Issuer Key](user-stories/issuer#i8-rotate-issuer-key)                                                                                                      | M      |       |
+| [I.9 Configure Trust Framework for Attestation](user-stories/issuer#i9-configure-trust-framework-for-attestation)                                                      | M      |       |
+| [I.10 Multilangual Attestation](user-stories/issuer#i10-multilangual-attestion)                                                                                        | C      |       |
+| [V.1 Create Presentation Request Template](user-stories/verifier#v1-create-presentation-request-template)                                                              | M      |       |
+| [V.2 View Presentation Request Template](user-stories/verifier#v2-view-presentation-request-template)                                                                  | M      |       |
+| [V.3 Update Presentation Request Template](user-stories/verifier#v3-update-presentation-request-template)                                                              | M      |       |
+| [V.4 Delete Presentation Request Template](user-stories/verifier#v4-delete-presentation-request-template)                                                              | M      |       |
+| [V.5 Configure Trust Framework for Verification](user-stories/verifier#v5-configure-trust-framework-for-verification)                                                  | M      |       |
+| [V.6 Request Presentation](user-stories/verifier#v6-request-presentation)                                                                                              | M      |       |
+| [F.1 Receive Incorporation Deed Attestation from Notary](#f1-receive-incorporation-deed-attestation-from-notary)                                                       |        |       |
+| [F.2 Present Incorporation Deed Attestation to Chamber of Commerce](#f2-present-incorporation-deed-attestation-to-chamber-of-commerce)                                 |        |       |
+| [F.3 Receive Chamber of Commerce Registration Attestation from Chamber of Commerce](#f3-receive-chamber-of-commerce-registration-attestation-from-chamber-of-commerce) |        |       |
+| [F.4 Present Chamber of Commerce Registration Attestation to Tax Authority](#f4-present-chamber-of-commerce-registration-attestation-to-tax-authority)                 |        |       |
+| [F.5 Receive VAT ID Attestation from Dutch Tax Authority](#f5-receive-vat-id-attestation-from-dutch-tax-authority)                                                     |        |       |
+| [F.6 Present Chamber of Commerce Registration Attestation to Dutch Bank](#f6-present-chamber-of-commerce-registration-attestation-to-dutch-bank)                       |        |       |
+| [F.7 Receive Bank Account Attestation from Dutch Bank](#f7-receive-bank-account-number-attestation-from-dutch-bank)                                                    |        |       |
+| Limited and/or shared authority of a representative within a Legal Entity                                                                                              | S      |       |
+| 24/7 availability                                                                                                                                                      | M      |       |
+| Align with Architecture Reference Framework                                                                                                                            | M      |       |
+
+## Personal Wallet
+
+Personal Wallets are an important component in the Company Passport. Organisational Wallets need to work in combination with Personal Wallets, where PID, Authorised Director, and other personal Attesations can be stored. For the version of the Organisational Wallet, Personal Wallets are required to adhere to the requirements set forth in the [EU Architecture Reference Framework](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/v1.3.0/docs/arf.md)

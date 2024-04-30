@@ -102,7 +102,7 @@ identifiers.
 In the current "Uitreksel" creatd by the Chamber of Commerce, Authorised Directors are listed directly. For the Company Passport,
 an authorised director for a legal entity can get an Authorised Director Attestation issued to their personal wallet.
 The Authorised Director Attestation will link to the Chamber of Commerce Number. Only full power of
-attorney Authorised Directory Attestations are within the scope of the current Founding a Company use case.
+attorney Authorised Director Attestations are within the scope of the current Founding a Company use case.
 
 ### VAT ID
 
@@ -178,9 +178,9 @@ sequenceDiagram
     deactivate person_a
     person_a_wallet -->> coc: Present PID
     deactivate person_a_wallet
-    coc ->> coc: Verify PID registered as Authorised Directory with full power of attorney in Holding A
+    coc ->> coc: Verify PID registered as Authorised Director with full power of attorney in Holding A
     coc ->> holding_a_wallet: Issue Chamber of Commerce Registration Attestation
-    Note right of coc: TODO:<br/>The Chamber of Commerce should also issue an "Authorised Directory"<br/>Attestation with full power of attorney to the Person A Personal Wallet
+    Note right of coc: TODO:<br/>The Chamber of Commerce should also issue an "Authorised Director"<br/>Attestation with full power of attorney to the Person A Personal Wallet
     deactivate holding_a_wallet
     deactivate coc
 ```
@@ -233,7 +233,7 @@ sequenceDiagram
     notary ->> holding_a_wallet: Request Chamber of Commerce Registration Attestation
     holding_a_wallet -->> notary: Present Chamber of Commerce Registration Attestation
     notary ->> person_a_wallet: Request PID and Holding A Authorised Director Attestations
-    person_a_wallet -->> notary: Present PID and Holding A Authorised Directory Attestations
+    person_a_wallet -->> notary: Present PID and Holding A Authorised Director Attestations
 
     notary ->> holding_b_wallet: Request Chamber of Commerce Registration Attestation
     holding_b_wallet -->> notary: Present Chamber of Commerce Registration Attestation
@@ -252,7 +252,7 @@ sequenceDiagram
     person_a -->> operating_company_wallet: Present Incorporation Deed Attestation to Chamber of Commerce
     operating_company_wallet ->> coc: Present Incorporation Deed Attestation
     coc ->> coc: Register Operating Company
-    Note right of coc: TODO:<br/>The Chamber of Commerce probably also needs to verify the <br/>Authorised Directory Attestation of Holding A and the PID of Person A<br/>before issuing the Chamber of Commerce Registration Attestation
+    Note right of coc: TODO:<br/>The Chamber of Commerce probably also needs to verify the <br/>Authorised Director Attestation of Holding A and the PID of Person A<br/>before issuing the Chamber of Commerce Registration Attestation
     coc ->> operating_company_wallet: Issue Chamber of Commerce Registration Attestation
 ```
 

@@ -11,6 +11,8 @@ This page will list specific schemas defining the structure of Attestations for 
 
 </Callout>
 
+<Callout variant="secondary">The schemas are provided as examples and are not meant for actual usage.</Callout>
+
 ## Example Chamber of Commerce Registration
 
 This is an example of a JSON schema
@@ -55,5 +57,218 @@ This is an example of a JSON schema
     // other properties related to chamber of commerce registartion
   },
   "required": ["vct", "kvk_number", "legal_entity"],
+}
+```
+
+## E-Invoicing Pilot Schemas
+
+### Omzetbelasting Attestation
+
+Source: https://github.com/Sphereon-Opensource/vc-contexts/blob/master/e-invoicing/omzetbelasting.schema.json
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "btw-id en ob-nummer",
+  "description": "btw-identificatienummer (btw-id) en omzetbelastingnummer (ob-nummer)",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://api-pilot.ebsi.eu/trusted-schemas-registry/v2/schemas/0xa36f4a45e3949e05e6ae8012db4a87d213824abfb6783ae940ba1596b996c121"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "description": "De attributen voor de organisatie die onder andere het bwt-id en ob-nummer bevatten",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "De DID van het subject waarover de Verifiable Attestation gaat",
+              "type": "string",
+              "format": "uri"
+            },
+            "naam": {
+              "description": "Naam van de onderneming",
+              "type": "string"
+            },
+            "rsin": {
+              "description": "Het Rechtspersonen en Samenwerkingsverbanden Informatienummer, uitgegeven door de Kamer van Koophandel",
+              "type": "string"
+            },
+            "btw-id": {
+              "description": "BTW Identificatienummer",
+              "type": "string",
+              "pattern": "^NL[0-9]{9}B[0-9]{2}$"
+            },
+            "ob-nummer": {
+              "description": "Omzetbelastingnummer",
+              "type": "string",
+              "pattern": "^[0-9]{9}B[0-9]{2}$"
+            }
+          },
+          "required": ["id", "naam", "btw-id", "ob-nummer"]
+        }
+      }
+    }
+  ]
+}
+```
+
+### Woonplaatsverplaring Attestation
+
+Source: https://github.com/Sphereon-Opensource/vc-contexts/blob/master/e-invoicing/woonplaatsverklaring.schema.json
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Woonplaatsverklaring",
+  "description": "verklaring waarin staat dat een belastingplichtige gevestigd is in Nederland",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://api-pilot.ebsi.eu/trusted-schemas-registry/v2/schemas/0xa36f4a45e3949e05e6ae8012db4a87d213824abfb6783ae940ba1596b996c121"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "description": "Bevat attributen over het onderwerp, te weten een Nederlandse vennootschap",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "De DID van het subject waarover de Verifiable Attestation gaat",
+              "type": "string",
+              "format": "uri"
+            },
+            "naam": {
+              "description": "Naam van de onderneming",
+              "type": "string"
+            },
+            "rsin": {
+              "description": "Het Rechtspersonen en Samenwerkingsverbanden Informatienummer, uitgegeven door de Kamer van Koophandel",
+              "type": "string"
+            },
+            "adres": {
+              "description": "Woonplaats of verstigings adres",
+              "type": "object",
+              "properties": {
+                "straatnaam": {
+                  "description": "Straatnaam",
+                  "type": "string"
+                },
+                "huisnummer": {
+                  "description": "Huisnummer",
+                  "type": "string"
+                },
+                "postcode": {
+                  "description": "Postcode",
+                  "type": "string"
+                },
+                "plaats": {
+                  "description": "Plaats",
+                  "type": "string"
+                }
+              },
+              "required": ["straatnaam", "huisnummer", "postcode", "plaats"]
+            }
+          },
+          "required": ["id", "naam", "rsin", "adres"]
+        }
+      }
+    }
+  ]
+}
+```
+
+### RISN Attestation
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RSIN",
+  "description": "Schema voor een Rechtspersonen en Samenwerkingsverbanden Informatienummer (RSIN) van een organisatie",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://api-pilot.ebsi.eu/trusted-schemas-registry/v2/schemas/0xa36f4a45e3949e05e6ae8012db4a87d213824abfb6783ae940ba1596b996c121"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "description": "Defineert informatie over het subject die beschreven wordt door de rsin",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Definieert de DID van het subject die beschreven is door de Verifiable Attestation",
+              "type": "string",
+              "format": "uri"
+            },
+            "rsin": {
+              "description": "Rechtspersonen Samenwerkingsverbanden Informatie Nummer",
+              "type": "string"
+            },
+            "naam": {
+              "description": "Naam van een rechtspersoon, samenwerkingsverband",
+              "type": "string"
+            }
+          },
+          "required": ["id", "rsin", "naam"]
+        }
+      }
+    }
+  ]
+}
+```
+
+### KVK Attestation
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KVK registratie",
+  "description": "Schema voor een KVK registration voor een organisatie",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://api-pilot.ebsi.eu/trusted-schemas-registry/v2/schemas/0xa36f4a45e3949e05e6ae8012db4a87d213824abfb6783ae940ba1596b996c121"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "description": "Defineert informatie over het subject die beschreven wordt door de KVK registratie",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Definieert de DID van het subject die beschreven is door de Verifiable Attestation",
+              "type": "string",
+              "format": "uri"
+            },
+            "kvkNummer": {
+              "description": "KVK nummer van de onderneming",
+              "type": "string"
+            },
+            "naam": {
+              "description": "Naam van een rechtspersoon, samenwerkingsverband",
+              "type": "string"
+            },
+            "rechtsvorm": {
+              "description": "Rechtsvorm van de onderneming",
+              "type": "string"
+            },
+            "startdatum": {
+              "description": "De start datum van de onderneming",
+              "type": "string",
+              "format": "date"
+            },
+            "einddatum": {
+              "description": "De eind datum van de onderneming",
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "required": ["id", "kvkNummer", "naam", "startdatum"]
+        }
+      }
+    }
+  ]
 }
 ```

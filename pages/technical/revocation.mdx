@@ -8,7 +8,7 @@ A StatusList allows you to revoke or suspend credentials at an individual level.
 claims in every credential being issued, which has a descriptor pointing to the statuslist location (URI), as well
 having an index within the statuslist. The statuslist itself is a simple bitstring, where every bit either is a 0 (the
 default), or 1, meaning revoked or suspended, depending on the purpose of the statuslist. Some statuslist do not use a
-single bit position, and can have multiple bits, for additional statuse.
+single bit position, and can have multiple bits, for additional statuses.
 If the purpose is revocation then it cannot be undone. If it is suspension then you can go from active to suspended and
 back to active.
 

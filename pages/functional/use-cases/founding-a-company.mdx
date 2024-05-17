@@ -16,17 +16,17 @@ the Tax Office (Belastingdienst) needs to happen. The Tax Office will issue a TA
 Once the corporation is incorporated with the KvK, the directors open a bank account for the corporation.
 
 The below organizational structure represents a common structure for a Dutch Legal Entity. Where each director of the
-operating company has it's own personal Holding Legal Entity. The current scope is to faciliate the structure as documented
+operating company has it's own personal Holding Legal Entity. The current scope is to facilitate the structure as documented
 in the diagram below for incorporating a new Legal Entity.
 
 ```mermaid
 flowchart TD;
   Operating_company["Operating Company
-  - Has an Organisational Wallet"]
+  - Has an Organizational Wallet"]
   Holding_A["Holding A
-  - Has an Organisational Wallet"]
+  - Has an Organizational Wallet"]
   Holding_B["Holding B
-  - Has an Organisational Wallet"]
+  - Has an Organizational Wallet"]
   Holding_C["Holding C"]
   Person_A["Person A
   - Has a Personal Wallet"]
@@ -89,7 +89,7 @@ deed of incorporation, formalizing company establishment.
 "Uitreksel" in Dutch. Incorporation documents are provided to the
 Chamber of Commerce (KVK), which verifies and approves these documents,
 issuing a company registration attestation and formally registering the company.
-The attestion will include the Chamber of Commerce Number (KVK Nummer) and the RSIN.
+The attestation will include the Chamber of Commerce Number (KVK Nummer) and the RSIN.
 Not all Dutch legal entities get an RSIN, for example sole proprietorship (“eenmanszaak”).
 
 The RSIN is an identification number for legal entities and partnerships issued by the
@@ -97,12 +97,12 @@ Dutch Chamber of Commerce to a legal entity. The RSIN is automatically
 provided to the Dutch Tax Office who uses the RSIN to generate other
 identifiers.
 
-### Chamber of Commerce Authorised Director
+### Chamber of Commerce Authorized Director
 
-In the current "Uitreksel" creatd by the Chamber of Commerce, Authorised Directors are listed directly. For the Company Passport,
-an authorised director for a legal entity can get an Authorised Director Attestation issued to their personal wallet.
-The Authorised Director Attestation will link to the Chamber of Commerce Number. Only full power of
-attorney Authorised Director Attestations are within the scope of the current Founding a Company use case.
+In the current "Uitreksel" created by the Chamber of Commerce, Authorized Directors are listed directly. For the Company Passport,
+an authorized director for a legal entity can get an Authorized Director Attestation issued to their personal wallet.
+The Authorized Director Attestation will link to the Chamber of Commerce Number. Only full power of
+attorney Authorized Director Attestations are within the scope of the current Founding a Company use case.
 
 ### VAT ID
 
@@ -122,7 +122,7 @@ acting as legitimate proof of checks already done by other trusted parties.
 ## Detailed Flow
 
 This section gives a more detailed overview of the flows that will be required for incorporating a new
-Legal Entity, based on the organisational structure as defined above.
+Legal Entity, based on the organizational structure as defined above.
 
 The following is assumed as a starting point for these flows:
 
@@ -130,11 +130,11 @@ The following is assumed as a starting point for these flows:
 - Operating Company does not exist yet
 - Holding A, B & C already exist, but do not have organizational wallets or attestations yet.
 
-### Holding A Organisational Wallet initalisation
+### Holding A Organizational Wallet initialization
 
 This flow covers the following:
 
-- Person A contracts an Organisational Wallet for Holding A from a Wallet Provider
+- Person A contracts an Organizational Wallet for Holding A from a Wallet Provider
 - Person A requests a ["Chamber of Commerce Registration"](#chamber-of-commerce-registration) Attestation from the Chamber of Commerce from Holding A Organisataional Wallet
 
 ```mermaid
@@ -147,14 +147,14 @@ sequenceDiagram
     participant coc as Chamber of Commerce
     participant wallet_provider as Wallet Provider
 
-    %% Contract Organisational Wallet
-    person_a ->> wallet_provider: Contracts an Organisational Wallet for Holding A
+    %% Contract Organizational Wallet
+    person_a ->> wallet_provider: Contracts an Organizational Wallet for Holding A
     activate person_a
     activate wallet_provider
-    create participant holding_a_wallet as Holding A Organisational Wallet
-    wallet_provider ->> holding_a_wallet: Provision Organisational Wallet
+    create participant holding_a_wallet as Holding A Organizational Wallet
+    wallet_provider ->> holding_a_wallet: Provision Organizational Wallet
     wallet_provider ->> holding_a_wallet: Issue Wallet Attestation
-    wallet_provider -->> person_a: Grant access to Organisational Wallet
+    wallet_provider -->> person_a: Grant access to Organizational Wallet
     deactivate wallet_provider
     deactivate person_a
 
@@ -164,7 +164,7 @@ sequenceDiagram
     activate person_a
     holding_a -->> holding_a_wallet: Request Chamber of Commerce Registration Attestation
     activate holding_a_wallet
-    holding_a_wallet ->> coc: Request Chanmber of Commerce Registration Attestation
+    holding_a_wallet ->> coc: Request Chamber of Commerce Registration Attestation
     activate coc
     coc ->> holding_a: Request KVK number
     holding_a -->> coc: KVK number
@@ -178,9 +178,9 @@ sequenceDiagram
     deactivate person_a
     person_a_wallet -->> coc: Present PID
     deactivate person_a_wallet
-    coc ->> coc: Verify PID registered as Authorised Director with full power of attorney in Holding A
+    coc ->> coc: Verify PID registered as Authorized Director with full power of attorney in Holding A
     coc ->> holding_a_wallet: Issue Chamber of Commerce Registration Attestation
-    Note right of coc: TODO:<br/>The Chamber of Commerce should also issue an "Authorised Director"<br/>Attestation with full power of attorney to the Person A Personal Wallet
+    Note right of coc: TODO:<br/>The Chamber of Commerce should also issue an "Authorized Director"<br/>Attestation with full power of attorney to the Person A Personal Wallet
     deactivate holding_a_wallet
     deactivate coc
 ```
@@ -189,8 +189,8 @@ sequenceDiagram
 
 This flow covers the following:
 
-- Person A contracts an Organisational Wallet for Operating Company from a Wallet Provider
-- Incorporate Operating Company at the Notary and receive an ["Incorporation Deed"](#incorporation-deed) Attesstation from the Notary.
+- Person A contracts an Organizational Wallet for Operating Company from a Wallet Provider
+- Incorporate Operating Company at the Notary and receive an ["Incorporation Deed"](#incorporation-deed) Attestation from the Notary.
 - Present the ["Incorporation Deed"](#incorporation-deed) Attestation to the Chamber of Commerce and receive a ["Chamber of Commerce Registration"](#chamber-of-commerce-registration) Attestion from the Chamber of Commerce.
 
 > NOTE: the diagram is still a work in process and needs some details cleared up
@@ -202,24 +202,24 @@ sequenceDiagram
     participant person_a as Person A
     participant person_a_wallet as Person A Personal Wallet
     participant holding_a as Holding A
-    participant holding_a_wallet as Holding A Organisational Wallet
+    participant holding_a_wallet as Holding A Organizational Wallet
     participant person_b as Person B
     participant holding_b as Holding B
-    participant holding_b_wallet as Holding B Organisational Wallet
+    participant holding_b_wallet as Holding B Organizational Wallet
     participant person_c as Person C
     participant holding_c as Holding C
     participant notary as Notary
     participant coc as Chamber of Commerce
     participant wallet_provider as Wallet Provider
 
-    %% Contract Organisational Wallet for Operating Company
-    person_a ->> wallet_provider: Contracts an Organisational Wallet for Operating Company
+    %% Contract Organizational Wallet for Operating Company
+    person_a ->> wallet_provider: Contracts an Organizational Wallet for Operating Company
     activate person_a
     activate wallet_provider
-    create participant operating_company_wallet as Operating Company Organisational Wallet
-    wallet_provider ->> operating_company_wallet: Provision Organisational Wallet
+    create participant operating_company_wallet as Operating Company Organizational Wallet
+    wallet_provider ->> operating_company_wallet: Provision Organizational Wallet
     wallet_provider ->> operating_company_wallet: Issue Wallet Attestation
-    wallet_provider ->> person_a: Grant access to Organisational Wallet
+    wallet_provider ->> person_a: Grant access to Organizational Wallet
     deactivate wallet_provider
     deactivate person_a
 
@@ -232,8 +232,8 @@ sequenceDiagram
 
     notary ->> holding_a_wallet: Request Chamber of Commerce Registration Attestation
     holding_a_wallet -->> notary: Present Chamber of Commerce Registration Attestation
-    notary ->> person_a_wallet: Request PID and Holding A Authorised Director Attestations
-    person_a_wallet -->> notary: Present PID and Holding A Authorised Director Attestations
+    notary ->> person_a_wallet: Request PID and Holding A Authorized Director Attestations
+    person_a_wallet -->> notary: Present PID and Holding A Authorized Director Attestations
 
     notary ->> holding_b_wallet: Request Chamber of Commerce Registration Attestation
     holding_b_wallet -->> notary: Present Chamber of Commerce Registration Attestation
@@ -252,7 +252,7 @@ sequenceDiagram
     person_a -->> operating_company_wallet: Present Incorporation Deed Attestation to Chamber of Commerce
     operating_company_wallet ->> coc: Present Incorporation Deed Attestation
     coc ->> coc: Register Operating Company
-    Note right of coc: TODO:<br/>The Chamber of Commerce probably also needs to verify the <br/>Authorised Director Attestation of Holding A and the PID of Person A<br/>before issuing the Chamber of Commerce Registration Attestation
+    Note right of coc: TODO:<br/>The Chamber of Commerce probably also needs to verify the <br/>Authorized Director Attestation of Holding A and the PID of Person A<br/>before issuing the Chamber of Commerce Registration Attestation
     coc ->> operating_company_wallet: Issue Chamber of Commerce Registration Attestation
 ```
 

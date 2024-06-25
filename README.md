@@ -5,7 +5,7 @@
 <h1 align="center"><b>Company Passport</b></h1>
 
 > [!TIP]
-> For a live version of this documentation, see [https://dutchblockchaincoalition.github.io/CompanyPassport](https://dutchblockchaincoalition.github.io/CompanyPassport)**
+> For a live version of this documentation, see [https://dutchblockchaincoalition.github.io/CompanyPassport](https://dutchblockchaincoalition.github.io/CompanyPassport)\*\*
 
 This repository contains the source code of the documentation for the Company Passport project.
 
@@ -35,7 +35,7 @@ Once you have setup all prerequisites and installed the needed dependencies, you
 yarn dev
 ```
 
-You can now view the documentation site locally by going to `http://localhost:3000/CompanyPassport`. Any changes you make will reload the site so you see the most up to date version. 
+You can now view the documentation site locally by going to `http://localhost:3000/CompanyPassport`. Any changes you make will reload the site so you see the most up to date version.
 
 ### Structure
 

@@ -7,8 +7,40 @@ import { Callout } from '@components/Callout'
 
 <Callout variant="primary">
 
-This page will list the technical requirements surrounding (cryptographic) identifiers that will be used by issuers, holders and verifiers within the Company Passport.
+    This page lists the technical requirements surrounding (cryptographic) identifiers that will be used by issuers,
+    holders and verifiers within the Company Passport.
 
-Examples of Identifiers are Decentralized Identifiers (DID), JWK Thumbprint, and HTTPS URLs.
+    Examples of Identifiers are Decentralized Identifiers (DID), JWK Thumbprint, and HTTPS URLs.
 
 </Callout>
+
+## JSON Web Keys (JWK)
+
+Since JSON Web Keys (JWK) as defined in [IETF RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517) provide a standardized way of representing keys, both symmetrical and asymmetrical, including support for X.509 certificate chains, they are a natural fit for organizational wallets.
+JWKs can also be represented as a set of keys, called JSON Web Key Sets (JWKS, notice the different capitalization for the 's')
+
+A Company Passport solution MUST support JWK and JWKS to represent keys
+
+## HTTPs URLs, well-known locations
+
+JWKs and more specifically JWKS, can be hosted as a JSON file at a particular URL. This is very common for OAuth 2.0 or OpenID Connect solutions, where the keys are hosted at well-known locations or expressed for instance by a value like `jwks_uri`.
+
+A Company Passport solution SHOULD support resolution or HTTPS (only) URLs to resolve JWKS.
+
+## JWK Thumbprint
+
+JWK thumbprints, defined in [IETF RFC 7638](https://www.rfc-editor.org/rfc/rfc7638.html) are hash values computed over a JSON Web Key (JWK). They allow to convey during a data exchange which JWK was involved in the signature or encryption process. They can be used as a persistent identifier associated with a (Q)EAA Provider or relying party, ie they can be used in trust decisions as the thumbprint cannot change unless the public key changes.
+
+A Company Passport solution MUST support the usage of JWK thumbprints for Key Identifiers values (kid header) in JWTs.
+A Company Passport solution MAY support the usage of [JWK thumbprint URIs](https://www.ietf.org/archive/id/draft-ietf-oauth-jwk-thumbprint-uri-00.html)
+
+## Decentralized Identifiers
+
+Depending on the DID methods used, Decentralized Identifiers may have some of the below benefits over regular HTTPS URLs and JWK Thumbprints, like for instance:
+
+- Persistent identifiers, whilst allowing key rotation
+- Key history, allowing to resolve keys at a certain moment in time
+- Service publication and discovery, like for instance [Linked Verifiable Presentations](https://identity.foundation/linked-vp/)
+
+Company Passport solutions SHALL support Decentralized Identifiers according to the [W3C DID Core](https://www.w3.org/TR/did-spec-registries) specification and SHALL support the [Decentralized Identity Interop Profile](https://github.com/DutchBlockchainCoalition/DIIP)
+Company Passport solutions SHALL support [Linked Verifiable Presentations](https://identity.foundation/linked-vp/) to make (Q)EAAs and/or PID data available for others to access. Either publicly or with authentication/authorization per Linked VP

@@ -7,8 +7,43 @@ import { Callout } from '@components/Callout'
 
 <Callout variant="primary">
 
-This page will list the technical requirements surrounding key management within the Company Passport.
+    This page list the technical requirements surrounding key management within the Company Passport.
 
-Examples of requirements surrounding key management are the use of Key Management Services, and hardware bound cryptographic keys.
+    Examples of requirements surrounding key management are the use of Key Management Services, and hardware bound
+    cryptographic keys.
 
 </Callout>
+
+Although we recognize that a company passport could be implemented using mobile app technology, we also expect at 24/7 internet connected server components for an organization wallet, making cloud based application the more natural choice. This is important, as it limits the usage of Qualified Signature Create Devices to a certain extend.
+As mentioned one could use a Secure Element/Trusted Execution Environment on the mobile phone, but that is less likely, not only because of the aforementioned technical requirements, but also because SE/TEE on mobile devices still need to be approved.
+The more viable approaches with a cloud based wallet are either a remote Hardware Security Module provided by a Qualified Trust Service Provider (QTSP) or an external dongle/USB/NFC card, like a yubikey. Given the additional requirements for Qualified Electronic Signatures and Seals, Company Passport only focuses on remote HSMs with (Q)TSPs.
+
+Company passport solutions:
+
+- MUST use a remote or local Hardware Security Module, meaning a (Q)SCD provided by a (Qualified) Trust Service Provider, (Q)TSP
+- MUST follow the [ARF rulebook annex-2](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/main/docs/annexes/annex-2/annex-2-high-level-requirements.md#a2316-topic-16---signing-documents-with-eudi-wallet) for further requirements to Signing Documents; some important notes:
+- SHALL Support the formats PAdES, XAdES, JAdES, CAdES, ASiC
+- MUST support the [Cloud Signature Consortium specification](https://cloudsignatureconsortium.org/resources/)
+
+For signature and seal creation:
+
+- SHALL use Qualified Electronic Certificates for Qualified Electronic Signatures and Seals, as required in eIDAS
+- SHALL have a Signature Creation Application, either as part of or remote to the organization wallet; see the definition in the [ETSI TS 119 432](https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=58831&curItemNr=1&totalNrItems=1&optDisplay=10&titleType=all&qSORT=HIGHVERSION&qETSI_ALL=&SearchPage=TRUE&qETSI_NUMBER=119+432&qINCLUDE_SUB_TB=True&qINCLUDE_MOVED_ON=&qSTOP_FLG=N&qKEYWORD_BOOLEAN=OR&qCLUSTER_BOOLEAN=OR&qFREQUENCIES_BOOLEAN=OR&qSTOPPING_OUTDATED=&butExpertSearch=Search&includeNonActiveTB=FALSE&includeSubProjectCode=FALSE&qREPORT_TYPE=SUMMARY) standard.
+
+## Key rotation
+
+NIST defines a "cryptoperiod" as “the time span during which a specific key is authorized for use by legitimate entities”. A suitably defined cryptoperiod limits:
+
+- the amount of exposure if a single key is compromised;
+- the time available for attempts to penetrate physical, procedural, and logical access mechanisms that protect a key from unauthorized disclosure;
+- the period within which information may be compromised by inadvertent disclosure of keying material to unauthorized entities;
+- the time available for computationally intensive cryptanalytic attacks
+
+Company passport solutions:
+
+- MUST be able to rotate keys when requested by its operator
+- SHOULD be able to regularly rotate keys at time based intervals
+
+## Key binding
+
+TODO: Do we want to say anything about key binding, or leave that up to the some of the specifications like IETF SD-JWT, HAIP etc

@@ -1,10 +1,10 @@
 {
-    "index": "Introduction",
-    "components": "Components",
-    "use-cases": "Use Cases",
-    "user-stories": "User Stories",
-    "requirements": "Requirements",
-    "to-revise": {
-        "display": "hidden"
-    }
+  "index": "Introduction",
+  "components": "Components",
+  "use-cases": "Use Cases",
+  "user-stories": "User Stories",
+  "requirements": "Requirements",
+  "to-revise": {
+    "display": "hidden"
+  }
 }

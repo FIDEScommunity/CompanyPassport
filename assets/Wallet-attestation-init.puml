@@ -1,0 +1,56 @@
+@startuml
+skinparam maxMessageSize 200
+skinparam wrapWidth 300
+skinparam sequenceMessageAlign center
+skinparam BoxPadding 100
+
+autonumber "<b>(000)"
+
+title Wallet attestation initialization
+
+
+participant u as "User"
+participant w as "Wallet Instance"
+participant wp as "Wallet Provider"
+participant qtsp as "(Q)TSP"
+
+hnote over u,qtsp: Please Note that the below flow is just an example. It provides some basic steps; but every wallet provider will have their own implementation of onboarding users and wallets
+w -> w: Get or generate a unique device ID (for instance Android ID, IOS identifierForVendor, optionally adding another unique id if the wallet has multiple users/profiles)
+w --> u: Ask account information
+hnote over w, wp: What the account information entails and the method of obtaining that is up to the Wallet Provider
+u --> w: Provide account information
+w <--> wp: Setup a secure channel (SC)
+hnote over w, wp: How this is technically achieved is up to the provider.\nCould be using ephemeral keys, a key-agreement protocol or TLS protected sockets, message broker. Or could even be implicit for a cloud wallet backend.
+w -> wp: SC: Account info and unique device ID
+wp -> wp: Account known?
+opt Unknown account
+u <--> wp: Onboarding process
+hnote over u, wp: Onboarding process of users is Provider specific. For instance could be e-mail verification, could be online or offline identification
+end
+wp -> wp: device ID known?
+opt Unknown device
+u <--> wp: Have user confirm new device, potentially identify itself
+hnote over u, wp: The requirements for (re)identification on a new device are Provider and trust framework specific. Could be as simple as an e-mail or OTP approval
+end
+wp -> wp: Bind account and device id.
+wp -> wp: Bind any pre-existing external factors for the account like FIDO or HSM
+wp -> w: SC: Account and device successfully bound
+
+hnote over w, wp: Assessment of applicable wallet device keypair location.\nThis can be pre-determined by the Wallet Provider or determined based on the hardware capabilities available. If the previous step was onboarding of a new device for an existing account, a external factor could already be bound
+alt External factor already bound
+w <--> w:
+else secure element on device and provider allows to use it
+
+w -> w : Generate wallet device keypair in secure area
+else External HSM
+
+w -> qtsp: Request new wallet device keypair
+qtsp -> qtsp:  Generate wallet device keypair in HSM
+qtsp -> w: HTTP 200 <Public key info>
+end
+
+'TODO:
+'Device manipulation, app impersonation
+' App/Play integrity and attestation
+'API - device challenge response
+@enduml

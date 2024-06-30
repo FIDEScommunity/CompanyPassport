@@ -5,10 +5,34 @@ import { Callout } from '@components/Callout'
   Cryptographic Algorithms
 </Title>
 
-<Callout variant="primary">
+## Signing Algorithms
 
-This page will list the technical requirements surrounding cryptographic algorithms used within the Company Passport.
+This section lists all required signing algorithms that need to be supported and are commonly used by other parts of the technical specification.
 
-Examples of cryptographic algorithms are `ES256` or `EdDSA`.
+### ECDSA using P-256 and SHA-256
 
-</Callout>
+[Elliptic Curve Digital Signature Algorithm](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf) (ECDSA) using [Curve P-256](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf) (D.2.2) and [SHA-256](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) is the most commonly used signing algorithms within Company Passport and MUST be supported.
+
+ECDSA using P-256 and SHA-256 is NIST approved, and is a generally well-supported signing algorithm in Hardware Security Modules (HSM) and on-device secure enclaves. on [iOS](https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/protecting_keys_with_the_secure_enclave) it is the only supported hardware-backed signing algorithm.
+
+ECDSA using P-256 and SHA-256 is registered as [ES256 in the JSON Web Algorithms (JWA)](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4) specification. It can also be expressed with object identifiers (OID) [`1.2.840.10045.4.3.2`](http://www.oid-info.com/cgi-bin/display?oid=1.2.840.10045.4.3.2&submit=Display&action=display) for ECDSA with SHA-256 and [`1.2.840.10045.3.1.7`](http://www.oid-info.com/cgi-bin/display?oid=1.2.840.10045.3.1.7&submit=Display&action=display) for Curve P-256.
+
+## Hashing Algorithms
+
+This section lists all required hashing algorithms that need to be supported and are commonly used by other parts of the technical specification.
+
+### SHA-256
+
+[SHA-256](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) is the most commonly used hashing algorithm across [Attestation Formats](./attestation-formats), [Issuance Protocols](./issuance) and [Verification Protocols](./verification) and MUST be supported.
+
+## Additional requirements
+
+Additional requirements on cryptographic algorithms may be defined by specifications required in Company Passport, and MUST be supported in-line with the requirements set forth by those specifications.
+
+### ISO/IEC 18013-5 mDL Attestation Format
+
+The [ISO/IEC 18013-5 mDL Attestation Format](./attestation-formats#isoiec-18013-5-mdl) adds additional requirements on cryptographic algorithms that MAY need to be supported, depending on the Cipher Suite used:
+
+- Hashing Algorithms: [SHA-384](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) and [SHA-512](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
+- Signing Algorithms: [ES384](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4) (ECDSA with SHA-384), [ES512](https://datatracker.ietf.org/doc/html/rfc7518#section-3.4) (ECDSA with SHA-512), and [EdDSA](https://datatracker.ietf.org/doc/html/rfc8032#section-3)
+- Elliptic Curves: [Curve P-384](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf), [Curve P-521](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf), [X25519](https://datatracker.ietf.org/doc/html/rfc7748#section-5), [X448](https://datatracker.ietf.org/doc/html/rfc7748#section-5), [Ed25519](https://datatracker.ietf.org/doc/html/rfc8032#section-5.1), [Ed448](https://datatracker.ietf.org/doc/html/rfc8032#section-5.2), [brainpoolP256r1](https://datatracker.ietf.org/doc/html/rfc5639#section-3.4), [brainpoolP320r1](https://datatracker.ietf.org/doc/html/rfc5639#section-3.5), [brainpoolP384r1](https://datatracker.ietf.org/doc/html/rfc5639#section-3.6), [brainpoolP512r1](https://datatracker.ietf.org/doc/html/rfc5639#section-3.7),

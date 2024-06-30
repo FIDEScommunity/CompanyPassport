@@ -5,10 +5,47 @@ import { Callout } from '@components/Callout'
   Attestation Formats
 </Title>
 
-<Callout variant="primary">
+## SD-JWT VC
 
-This page will list the technical requirements surrounding the attestation formats that will be used for the Company Passport.
+[SD-JWT VC](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/03) is one of the attestation formats required in the Architecture Reference Framework for issuance of PIDs and (Q)EAAs.
 
-Examples of Attestation Formats are mDOC/mDL, SD-JWT VC, W3C VCDM.
+A Company Passport solution MUST support draft 03 of SD-JWT VC.
+
+<Callout variant="accent">
+
+The Architecture Reference Framework currently refers to SD-JWT VC as the required SD-JWT specification. However, in a future version of the ARF this will likely be updated to a version of [SD-JWT VC DM](https://github.com/danielfett/sd-jwt-vc-dm).
+
+Due to the experimental stage of SD-JWT VC DM Company Passport will for now follow the requirements set forth in the Architecture Reference Framework.
 
 </Callout>
+
+### Cryptographic Algorithms
+
+For signing of the SD-JWT VC and the Key Binding JWT, at least the signing algorithm `alg` value `ES256` in combination with the elliptic curve `crv` value `P-256` MUST be supported according to [Cryptographic Algorithms](./cryptographic-algorithms).
+
+For digests of disclosures the `_sd_alg` value of `sha-256` MUST be supported according to the SD-JWT VC specification and [Cryptographic Algorithms](./cryptographic-algorithms).
+
+### Issuer Identification and Key Resolution
+
+The Attestation Provider of an SD-JWT VC MUST include a verifiable identifier as the value of `iss` payload claim. At least DID Document Resolution, JWT VC Issuer Metadata, and X509 Certificates according to [Identifiers](./identifiers) and [section 3.5 of SD-JWT VC](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-03#name-issuer-signed-jwt-verificat) MUST be supported.
+
+### Key Binding
+
+When cryptographic Key Binding is to be supported the `cnf` claim MUST contain a confirmation method identifying a proof of possession key.
+
+At least the `jwk` confirmation method MUST be supported according to [Identifiers](./identifiers) and [Section 3.2 in RFC 7800](https://www.rfc-editor.org/rfc/rfc7800#section-3.2).
+
+When a SD-JWT VC is to be bound to a key within a DID Document, the `kid` confirmation method SHALL be used with a value consisting of a [DID URL](https://www.w3.org/TR/did-core/#did-url-syntax) that points to a specific key within the DID Document. Depending on requirements, a verifier MAY choose to accept another key in the DID Document as valid proof of possession in the Key Binding JWT.
+
+<Callout variant="accent">
+  [Discussion is still ongoing](https://github.com/oauth-wg/oauth-sd-jwt-vc/issues/205) on how a DID URL should be conveyed as confirmation method. Possibly a new `did` confirmation method will be introduced. Since `kid` has been a widely used method to convey DID URLs, it will be used as confirmation method for DID URLs until the `did` confirmation method has been standardized.
+
+</Callout>
+
+## ISO/IEC 18013-5 mDL
+
+> TODO
+
+## W3C Verifiable Credential Data Model
+
+> TODO

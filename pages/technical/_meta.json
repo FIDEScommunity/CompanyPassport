@@ -7,7 +7,7 @@
   "identifiers": "Identifiers",
   "key-management": "Key Management",
   "cryptographic-algorithms": "Cryptographic Algorithms",
-  "authentication-authorisation": "Authentication and Authorisation",
+  "authentication-authorization": "Authentication and Authorization",
   "trust-management": "Trust Management",
   "security-considerations": "Security Considerations",
   "to-revise": {

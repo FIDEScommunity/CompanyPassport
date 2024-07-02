@@ -4,11 +4,30 @@ import { Title } from '@components/Title'
   Attestation Issuance
 </Title>
 
-## Issuance using Authorization Code flow
+Issuance as defined in the Architecture Reference Framework (ARF) is based on the OpenID for Verifiable Credential Issuance ([OID4VCI]) protocol. This page outlines the specific flows that need to be supported for Attestation Issuance within Company Passport.
 
-See source [Diagram](diagrams/Issuance-Authorization-code.puml) or [Image](/assets/Issuance-Authorization-code.svg)
+## OpenID for Verifiable Credential Issuance
 
-### Initialization:
+Attestations MUST be issued using the [OID4VCI] protocol, and MUST support both Authorization Code Flow and Pre-Authorized Code Flow. In addition implementations MUST support the Batch Credential Endpoint. An Issuer MAY support deferred credential issuance, which MUST be supported by the Wallet. Both the Issuer and Wallet MUST support the Notification Endpoint for updates from the Wallet to the Issuer.
+
+The Organizational Wallet can act as both Issuer and Wallet.
+
+### Credential Format Profiles
+
+Both the Issuer and Wallet MUST support the `vc+sd-jwt` (for the [SD-JWT VC Attestation Format](./attestation-formats.mdx#sd-jwt-vc)) and `mso_mdoc` (for the [ISO/IEC 18013-5 mDL Attestation Format](./attestation-formats.mdx#isoiec-18013-5-mdl)) Credential Format Profiles as defined in [OID4VCI]. Other Credential Format Profiles MAY be supported. See [Attestation Formats](./attestation-formats) for requirements around supported Attestation Formats.
+
+### High Assurance
+
+For additional security, requirements as defined in [Section 4. of High Assurance Interoperability Profile](https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0-00.html#name-openid-for-verifiable-crede) MUST be supported in Company Passport solutions. Additional custom URL schemes in addition to `haip://` can be supported.
+
+### Issuance using Authorization Code flow
+
+![Issuance Authorization Code](/assets/issuance-authorization-code.svg)
+
+<details>
+<summary>Authorization Code Flow in-depth</summary>
+
+#### Initialization:
 
 1. **(Wallet initiated)** The user opens and unlocks the wallet .
 2. **(Wallet initiated)** The user opens the wallet provided credential catalogue of pre-configured (Q)EAA Providers. After a (Q)EAA is selected the Wallet continues the flow with the pre-configured Credential Issuer URL and credential identifier. No Resource server/web page is involved
@@ -38,14 +57,14 @@ d) **(Issuer initiated)** The credential offer was completely static, which coul
     - an optional issuer_state parameter to bind this issuance to a pre-existing session with the Provider
 13. **(Issuer initiated)** The user unlocks the wallet
 
-### Status feedback
+#### Status feedback
 
 14. The Resource server could ask for regular status updates from the (Q)EAA Provider. This allows the website to inform the user via the browser about progress and/or errors. There are 2 possibilities (only the first one is currently supported). A regular POST to a status endpoint or a regular callback to a URL.
 15. The Resource Server does a regular POST or GET to the status endpoint of the (Q)EAA; Or the browser does this directly with the Provider using a secure host-only cookie
 16. The Provider matches the requested ID with it's internal session, optionally using the IDP.
 17. and 18. The (Q)EAA Provider returns a status/error response and the Resource Server updates its webpage
 
-### Metadata
+#### Metadata
 
 19. The Wallet fetches the Credential Issuer's metadata from the ./well-known files of the Credential Issuer URL
 20. The (Q)EAA Provider returns the Credential Issuer Metadata; containing:
@@ -54,7 +73,7 @@ d) **(Issuer initiated)** The credential offer was completely static, which coul
 21. The Wallet shows information about the (Q)EAA Provider and the offered (Q)EAA to the user and asks for consent
 22. The user consents and optionally selects multiple (Q)EAAs if supported (**(Issuer initiated)**)
 
-### Wallet attestations (WIP, not supported yet)
+#### Wallet attestations (WIP, not supported yet)
 
 - The Wallet retrieves a nonce for the client attestation from the (Q)EAA Provider; //could also be the state if provided//
 - The (Q)EAA Provider generates a nonce and links it to a session managed by the (Q)EAA Provider
@@ -64,7 +83,7 @@ d) **(Issuer initiated)** The credential offer was completely static, which coul
 - The Wallet fetches fresh client attestation from the Wallet Provider backend
 - The Wallet generates proof of possession (PoP) using the nonce fetched in the previous step and the private key for wallet attestations
 
-### Authentication
+#### Authentication
 
 23. The Wallet sends a Pushed Authorization Request (PAR) to the (Q)EAA Provider; containing:
     - the Wallet Provider's client_id
@@ -132,3 +151,12 @@ The next few steps highlight the different credential formats. The actual attest
 48. Optional user consent to accept the (Q)EAA and store it
 49. The Wallet stores the (Q)EAA and the associated keys.
 50. **(Issuer initiated)** Optional success feedback to user browser
+
+</details>
+
+## Verifying Wallet Instance Attestation
+
+[Wallet Instances Attestations](./wallet-instance-attestations) MUST be used for the Token and Pushed Authorization Request (PAR) endpoints before credential issuance as defined in [OAuth 2.0 Attestation-Based Client Authentication][AttestationAuth].
+
+[OID4VCI]: https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html
+[AttestationAuth]: https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/03/

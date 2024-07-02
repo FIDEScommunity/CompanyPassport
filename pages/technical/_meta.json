@@ -4,6 +4,7 @@
   "verification": "Attestation Verification",
   "revocation": "Attestation Revocation",
   "attestation-formats": "Attestation Formats",
+  "wallet-instance-attestations": "Wallet Instance Attestations",
   "identifiers": "Identifiers",
   "key-management": "Key Management",
   "cryptographic-algorithms": "Cryptographic Algorithms",

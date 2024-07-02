@@ -1,0 +1,34 @@
+import { Title } from '@components/Title'
+import { Callout } from '@components/Callout'
+
+<Title size="large" variant="primary">
+  Wallet Instance Attestations
+</Title>
+
+The Architecture Reference Framework (ARF) describes the usage of a Wallet Instance Attestation (WIA) and Wallet Trust Evidence (WTE), provided by the Wallet Provider to a Wallet Instance. The WTE describes the capabilities and properties of the Wallet Instance, and the WSCD(s). The WIA contains information allowing a PID Provider, an Attestation Provider, or a Relying Party, to verify that the Wallet Provider did not revoke the Wallet Instance Attestation.
+
+Specific schemas have not been defined yet for the WIA or WTE in the ARF. For this reason Company Passport only requires the usage of a Wallet Instance Attestation as defined in [OAuth 2.0 Attestation-Based Client Authentication][AttestationAuth].
+
+The Wallet Instance Attestation based on [OAuth 2.0 Attestation-Based Client Authentication][AttestationAuth] MUST conform to the requirements as defined in [Cryptographic Algorithms](./cryptographic-algorithms), [Key Management](./key-management), [Identifiers](./identifiers).
+
+<Callout variant="primary">
+
+<Title size="normal">Note on Wallet Instance Attestations</Title>
+
+Technical requirements surrounding Wallet Instance Attestations (WIAa) and Wallet Trust Evidence (WTE) still need to be defined in the Architecture Reference Framework, and are likely to change in future version of Company Passport. Wallet Instance Attestations based on [OAuth 2.0 Attestation-Based Client Authentication][AttestationAuth] provides a simple mechanism for a Wallet Instance.
+
+</Callout>
+
+### Issuance and Retrieval of a Wallet Instance Attestation
+
+Because the Wallet Provider issues the Wallet Instance Attestation to the Wallet Instance, no specific requirements are in place for issuing a Wallet Instance Attestation to a Wallet Instance. A Wallet implementation conforming to Company Passport needs to decide how a Wallet Instance Attestation is issued to the Wallet Instance.
+
+### Presentation and Verification of a Wallet Instance Attestation
+
+[Attestation Issuance](./issuance) and [Attestation Verification](./verification) describe how a Wallet Instance Attestation can be presented during Attestation Issuance or Attestation Verification.
+
+### Ephemeral Wallet Instance Attestations
+
+It is recommended to use ephemeral Wallet Instance Attestations for Personal Wallets to prevent linkability across Attestation Providers and Relying Parties.
+
+[AttestationAuth]: https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/03/

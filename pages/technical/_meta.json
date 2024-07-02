@@ -10,8 +10,5 @@
   "cryptographic-algorithms": "Cryptographic Algorithms",
   "authentication-authorization": "Authentication and Authorization",
   "trust-management": "Trust Management",
-  "security-considerations": "Security Considerations",
-  "to-revise": {
-    "display": "hidden"
-  }
+  "security-considerations": "Security Considerations"
 }

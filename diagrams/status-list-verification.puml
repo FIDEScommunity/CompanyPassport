@@ -22,16 +22,14 @@ skinparam BoxPadding 100
 
 autonumber "<b>(000)"
 
-title StatusList2021 Verification Process
+title Status List Verification Process
 
 participant i as "(Q)EAA Provider"
 participant rs as "Provider Resource server/CDN"
-participant v [
-                Relying Party or Wallet
-]
+participant v as "Relying Party or Wallet"
 
 loop Upon revocation
-i -> rs : Update StatusList with latest info
+i -> rs : Update status list with latest info
 end loop
 
 i --> v : Receive Presentation\nwith (Q)EAAsl\n(for instance via OID4VCI)
@@ -43,13 +41,13 @@ v -> v : Verify individual (Q)EAA signatures
 v -> v : Check credential payload/schema
 v -> v : Check for one or more statusList entries
 
-loop for every StatusList entry
-v -> rs : HTTP GET: Statuslist URI from the `statusListCredential` value in the VC
-rs -> v : HTTP 200: StatusList2021 VC
-v -> v : Check signatures of the StatusList2021 VC,\nmatching issuer against issuer of VC
-v -> v : Match purpose of StatusList2021 with purpose in VC
+loop for every status list entry
+v -> rs : HTTP GET: status list URI from the status list value in the VC
+rs -> v : HTTP 200: status list token/vc
+v -> v : Check signatures of the status list token/vc,\nmatching issuer against issuer of (Q)EAA
+v -> v : (BitstringStatusList) Match purpose of StatusList2021 with purpose in VC
 v -> v : Decompress bitstring
-v -> v : Lookup value 'statusListIndex' in bitstring
+v -> v : Lookup status list index from (Q)EAA in bitstring
 v -> v : In case of 1 return validation 'failure',\n in case of 0 return 'success'
 end loop
 end loop

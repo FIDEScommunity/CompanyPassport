@@ -1,14 +1,32 @@
-import { Title } from '@components/Title'
-import { Callout } from '@components/Callout'
+import {Title} from '@components/Title'
+import {Callout} from '@components/Callout'
+import {Fragment} from "react";
 
 <Title size="large" variant="primary">
-  Authentication and Authorization
+    Authentication and Authorization
 </Title>
 
 <Callout variant="primary">
-
-This page will list the technical requirements surrounding authentication and authorization to the Organizational Wallet.
-
-Examples of technical requirements surrounding this topic could be integration with existing SAML/SSO systems.
-
+    This page lists the technical requirements surrounding authentication and authorization to the Organizational
+    Wallet.
+    <Fragment></Fragment>
 </Callout>
+
+# As a (Q)EAA Provider
+## Authorization code flow
+When the wallet is acting as a (Q)EAA provider supporting a Authorization Code flow, the wallet could be using any authentication mechanism the holder is expected to support.
+This could ranging from integrations into national eID systems, SIOPv2, OpenID for Verifiable Credentials, to generic IAM solutions based on OAuth2, SAML, OpenID Connect for instance.
+
+## Pre-authorized flow
+Similar to the Authorization code flow, the holder should be authenticated to the wallet. Whenever a cross-device flow is being used with a credential offer and a QR code, a tx_code should be send out of bound, using for instance an e-mail or text message, to ensure that the QR code is somewhat protected from session hijacking.
+
+# As a holder
+## Authentication as a wallet user or employee
+Any Company Passport solution is free to choose whatever authentication and authorization mechanism(s) they want to
+employ for users (employees typically) of the wallet.
+
+A few notes and remarks:
+- Supporting well-known standards used in enterprise settings make sense, like for instance SSO / OpenID Connect
+- Supporting natural person (mobile) wallets to authenticate using SIOPv2 combined with optional OID4VP is probably desirable
+- Depending on the context requiring a certain level of assurance and/or using additional factors make sense
+- Since a Company Passport typically can also sign credentials and/or documents as a provider, making sure that authorization is properly handled and that an internal audit trail that can not be tampered with is a must

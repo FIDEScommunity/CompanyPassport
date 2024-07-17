@@ -26,6 +26,13 @@ Work is [underway within ETSI](https://portal.etsi.org/webapp/workProgram/Report
 ## 1) X.509 Certificates for Legal Entities
 
 X.509 Certificates used for Legal Entities are defined in [ETSI EN 319 412-3](https://www.etsi.org/deliver/etsi_en/319400_319499/31941203/01.03.01_60/en_31941203v010301p.pdf), called `Electronic Signatures and Infrastructures (ESI); Certificate Profiles; Part 3: Certificate profile for certificates issued to legal persons` which in turn relies on [rfc5280](https://www.rfc-editor.org/rfc/rfc5280.html)
+For certificates in general the following standards should be followed:
+
+- for issuance of certificates to natural persons (excluding for web site certificates): ETSI EN 319 412-2
+- for issuance of certificates to legal persons (excluding for web site certificates): ETSI EN 319 412-3
+- for issuance of certificates for web sites or devices: ETSI EN 319 412-4.
+
+
 
 ### Combination of identifiers and attributes
 
@@ -44,7 +51,11 @@ Determining whether a Legal Entity is using an eIDAS certificate issued by a Qua
 
 ### Certificate Revocation Lists (CRL) and Online Certificate Status Protocol (OCSP)
 
-TODO
+The CRL and OCSP profiles of chapter 6.6 defined in [ETSI EN 319 411-1](https://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.04.00_20/en_31941101v010400a.pdf) are to be supported, meaning:
+
+- The CRL shall be as defined in [ISO/IEC 9594-8/Recommendation ITU-T X.509](https://www.itu.int/rec/T-REC-X.509/en) or [IETF RFC 5280](https://www.rfc-editor.org/info/rfc5280).
+- [The OCSP shall be as defined in IETF RFC 6960](https://www.rfc-editor.org/info/rfc6960).
+
 
 ## 2) OpenID Federation
 

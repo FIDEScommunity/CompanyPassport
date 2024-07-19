@@ -12,59 +12,68 @@ import { Callout } from '@components/Callout'
   Summary
 </Title>
 
-From a technical perspective Company Passport builds on top of EUDI Wallet Architecture Reference Framework (ARF). However the ARF defines certain specifications as optional which means that clear choices have to be agreed upon to ensure interoperability in specific use cases. In addition, the current version of the ARF is lacking clear specifications for organizational wallets and organizational attestations. 
+From a technical perspective Company Passport builds on top of EUDI Wallet Architecture Reference Framework (ARF). However the ARF defines certain specifications as optional which means that clear choices have to be agreed upon to ensure interoperability in specific use cases. In addition, the current version of the ARF is lacking clear specifications for organizational wallets and organizational attestations.
 
-As a result, this first version of the Company Passport is focussing on describing the technical specifications for organizational wallets as well as a number of choices that exist in the ARF. In case future versions of the ARF will include details on organizational wallets and attestations, these sections may be adjusted accordingly in the Company Passport specifications. 
+As a result, this first version of the Company Passport is focussing on describing the technical specifications for organizational wallets as well as a number of choices that exist in the ARF. In case future versions of the ARF will include details on organizational wallets and attestations, these sections may be adjusted accordingly in the Company Passport specifications.
 
-As Company Passport is not building wallet solutions itself, these specifications set requirements around interoperability, security, and standards that need to be supported by 3rd party wallet solutions that want to interact in Company Passport use case scenarios. As described in the functional specifications, the components described in this specification can be implemented as a single organizational wallet solution (issuer, verifier, holder functionality), or as separate components working in tandem (potentially integrated in existing systems). 
+As Company Passport is not building wallet solutions itself, these specifications set requirements around interoperability, security, and standards that need to be supported by 3rd party wallet solutions that want to interact in Company Passport use case scenarios. As described in the functional specifications, the components described in this specification can be implemented as a single organizational wallet solution (issuer, verifier, holder functionality), or as separate components working in tandem (potentially integrated in existing systems).
 
 The technical interop profile for Company Passport compliant organizational wallets can be summarized as follows:
 
 Attestation Issuance
-- OID4VCI Implementer’s Draft 1 (WG Draft 13) 
+
+- OID4VCI Implementer’s Draft 1 (WG Draft 13)
 
 Attestation Verification and pseudonymous authentication
+
 - OpenID for Verifiable Presentations WG Draft 20
 - SIOP V2 WG draft 13
 - DIF Presentation Exchange V2.0
 
 Attestation Revocation
+
 - IETF Token Status List
-- W3C Bitstring Status List v1.0 
+- W3C Bitstring Status List v1.0
 
 Attestation formats:
+
 - SD-JWT VC
 - ISO mDOC
-- W3C VCDM 2.0 JSON-LD 
+- W3C VCDM 2.0 JSON-LD
 
 Identifiers for legal persons
+
 - JWK’s
 - X.509 Certificates
 - HTTPs URLs, well-known locations
 - JWK Thumbprint
 - DID:Web
-- DID:EBSI 
+- DID:EBSI
 
 Identifiers for natural persons
+
 - X.509 Certificates
 - JWK’s
 - JWK Thumbprint
-- DID:JWK 
+- DID:JWK
 
 Key Management:
-- Remote Hardware Security Module provided by a Qualified Trust Service Provider (QTSP) 
-Cryptographic Algorithms
+
+- Remote Hardware Security Module provided by a Qualified Trust Service Provider (QTSP)
+  Cryptographic Algorithms
 - Signing algorithms: ECDSA using P-256 and SHA-256
-- Hashing Algorithms: SHA-256 
+- Hashing Algorithms: SHA-256
 
 Trust Management
+
 - EU LOTL ( List of Trusted Lists)
 - X.509 Certificates and CRL, OCSP
 - OID Federation
-- EBSI Issuer Trust Model 
+- EBSI Issuer Trust Model
 
 Attestation schema formats:
-- JSON schema 
+
+- JSON schema
 
 More details are described in below sections:
 

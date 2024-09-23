@@ -5,7 +5,7 @@
 <h1 align="center"><b>Company Passport</b></h1>
 
 > [!TIP]
-> For a live version of this documentation, see [https://dutchblockchaincoalition.github.io/CompanyPassport](https://dutchblockchaincoalition.github.io/CompanyPassport)\*\*
+> For a live version of this documentation, see [https://fidescommunity.github.io/CompanyPassport](https://fidescommunity.github.io/CompanyPassport)\*\*
 
 This repository contains the source code of the documentation for the Company Passport project.
 
@@ -23,7 +23,7 @@ In order to preview the changes you make, you will need to run the development w
 Once you have installed Node.JS and Yarn, clone the repo, and install the dependencies:
 
 ```console
-git clone https://github.com/dutchblockchaincoalition/CompanyPassport.git
+git clone https://github.com/fidescommunity/CompanyPassport.git
 yarn install
 ```
 
@@ -43,9 +43,9 @@ When the site is deployed, the url routing is generated based on the directory s
 
 Some examples:
 
-- The `/pages/index.md` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport`
-- The `/pages/functions/index.mdx` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport/functional`
-- The `/pages/functional/components.mdx` file will be deployed at `https://dutchblockchaincoalition.github.io/CompanyPassport/functional/components`
+- The `/pages/index.md` file will be deployed at `https://fidescommunity.github.io/CompanyPassport`
+- The `/pages/functions/index.mdx` file will be deployed at `https://fidescommunity.github.io/CompanyPassport/functional`
+- The `/pages/functional/components.mdx` file will be deployed at `https://fidescommunity.github.io/CompanyPassport/functional/components`
 
 ### PlantUML Diagrams
 
